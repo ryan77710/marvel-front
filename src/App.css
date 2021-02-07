@@ -1,38 +1,426 @@
+/*
+header ligne 33
+CharacterPage ligne 56
+Login and SignUpPage ligne 112
+ComicPage ligne 151
+*/
+* {
+  box-sizing: border-box;
+}
+.hiden {
+  display: none;
+}
+/* loading page and unfind page and etc... */
+.IsLoading,
+.PageNotFound,
+.LoginPage,
+.SignUpPage {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(61, 136, 201);
+  background-color: black;
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding-top: 10px;
+  background-color: rgb(0, 0, 0);
   min-height: 100vh;
+}
+
+/* header component */
+header {
+  border: red solid 1px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+header > img {
+  height: 60px;
+  border-radius: 5px;
+}
+header > div {
+  border: solid 1px blue;
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  color: aliceblue;
+}
+header > div img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+header b {
+  color: crimson;
+}
+/* Pagination */
+.Pagination {
+  width: 100vw;
+  color: red;
+  margin-bottom: 20px;
+}
+.Pagination > div {
+  display: flex;
+  justify-content: center;
+}
+.Pagination > div > div {
+  margin-right: 20px;
+}
+.Pagination > div > div label {
+  margin-right: 10px;
+}
+.Pagination input {
+  background-color: transparent;
+  color: crimson;
+  outline: crimson;
+  border: none;
+  border: rgb(46, 91, 129) 1px solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+.Pagination input[type="text"]:focus {
+  background-color: rgb(46, 91, 129);
+  color: white;
+  border: white solid 1px;
+}
+
+.Pagination P > span:nth-child(1) {
+  color: rgb(46, 91, 129);
+
+  margin-right: 10px;
+}
+.Pagination P > span:nth-child(2) {
+  color: rgb(46, 91, 129);
+}
+
+/* CharacterPage  */
+.CharacterPage {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  color: aliceblue;
+}
+.CharacterPage .Poster {
+  margin-bottom: 15px;
+  position: relative;
+}
+.CharacterPage .Poster-img {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: solid red 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.CharacterPage .Poster > div:hover .hiden {
+  display: flex;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzJ_Y2yYaQmzEO-4atqBk1NH4sLe_VMlGqTQ&usqp=CAU");
+  height: 180px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  opacity: 0.7;
+  margin-top: 25px;
+  z-index: 10;
+}
+.CharacterPage .Poster > div:hover .hiden p {
+  color: rgb(0, 0, 0);
+  opacity: 1;
+  font-weight: bold;
+}
+
+.CharacterPage .Poster > div > div:nth-child(2) {
+  color: red;
+  width: 250px;
+}
+
+.CharacterPage .favored {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+.CharacterPage .Poster span {
+  position: absolute;
+  top: 0px;
+  color: red;
+}
+/* LoginPage and SignUpPage */
+.LoginPage form,
+.SignUpPage form {
+  display: flex;
+  flex-direction: column;
+  /* height: 300px; */
+  justify-content: space-around;
+  align-items: center;
+  /* border: blueviolet 1px solid; */
+  width: 20%;
+}
+
+.LoginPage form input,
+.SignUpPage form input {
+  height: 40px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.LoginPage form input:focus,
+.SignUpPage form input:focus {
+  outline-color: crimson;
+}
+.LoginPage form button,
+.SignUpPage form button {
+  height: 40px;
+  font-size: 20px;
+}
+.SignUpPage span,
+.LoginPage span {
+  margin-top: 10px;
+}
+.SignUpPage span:hover,
+.LoginPage span:hover {
+  color: crimson;
+  cursor: pointer;
+}
+/* ComicPage */
+.ComicPage {
+  color: rgb(32, 101, 161);
+}
+.ComicPage > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.ComicPage .Comic {
+  margin-bottom: 20px;
+  width: 40vw;
+}
+
+.ComicPage p {
+  color: aliceblue;
+  margin-bottom: 10px;
+}
+.ComicPage p .favored {
+  margin-right: 20px;
+}
+.ComicPage p span {
+  margin-right: 10px;
+  color: red;
+}
+.ComicPage .Comic > div {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  max-height: 300px;
+}
+.ComicPage img {
+  height: 300px;
+  width: 300px;
+  box-sizing: border-box;
+  border: rgb(32, 101, 161) 2px solid;
+
+  cursor: pointer;
+}
+.ComicPage .Comic > div p {
+  display: none;
+  box-sizing: border-box;
+  padding: auto;
+  flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 300px;
+}
+.ComicPage .Comic > div:hover {
+  width: 100%;
+}
+
+.ComicPage .Comic > div:hover p {
+  display: flex;
+  cursor: row-resize;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.ComicPage .boxShadow {
+  box-shadow: 12px 12px 9px 4px red;
+  -webkit-box-shadow: 12px 12px 9px 4px red;
+  -moz-box-shadow: 12px 12px 9px 4px red;
+}
+/* CharacterDetailPage */
+
+.CharacterDetailPage {
+  /* background-color: khaki; */
+  height: 88.5vh;
+  display: flex;
+}
+
+.CharacterDetailPage > div:nth-child(1) {
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+  /* border: solid 1px blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.CharacterDetailPage > div:nth-child(1) > img {
+  float: left;
+  width: 350px;
+  height: 350px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: slateblue solid 1px;
+}
+.CharacterDetailPage > div:nth-child(1) > p:nth-child(2) {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-decoration: underline;
+}
+.CharacterDetailPage > div:nth-child(1) > p:nth-child(3) {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 20px;
+}
+.CharacterDetailPage > div:nth-child(2) {
+  width: 1800px;
+  display: flex;
+}
+.CharacterDetailPage > div:nth-child(2) > div {
+  width: 50%;
+  height: 100%;
+}
+.CharacterDetailPage .container {
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.CharacterDetailPage .container span {
+  text-align: center;
+  margin-bottom: 20px;
   color: white;
+  text-decoration: underline;
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.CharacterDetailPage .container .comic {
+  min-width: 100%;
+  min-height: 300px;
+  max-height: 300px;
+  margin-bottom: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CharacterDetailPage > div:nth-child(2) > img {
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* .CharacterDetailPage .ShowComic modal */
+.CharacterDetailPage .ShowComic {
+  color: red;
+  position: absolute;
+  width: 100vw;
+  height: 88.5vh;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.CharacterDetailPage .ShowComic > div {
+  margin-top: 30px;
+  height: 70%;
+  width: 60%;
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  position: relative;
+}
+.CharacterDetailPage .ShowComic > div > div:nth-child(1) {
+  height: 100%;
+  width: 50%;
+  float: left;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+.CharacterDetailPage .ShowComic > div > div:nth-child(1) > img {
+  height: 70%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.CharacterDetailPage .ShowComic > div p:nth-child(2) {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.CharacterDetailPage .ShowComic > div input {
+  margin-bottom: 30px;
+  outline: none;
+  width: 30%;
+  height: 40px;
+  color: crimson;
+  background-color: black;
+  text-align: center;
+  border: slateblue 1px solid;
+  border-radius: 5px;
+}
+.CharacterDetailPage .ShowComic > div p:nth-child(4) {
+  color: rgb(255, 255, 255);
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: wheat solid 1px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border: 3px inset slateblue;
+}
+.CharacterDetailPage .ShowComic > div span {
+  color: slateblue;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+}
+.CharacterDetailPage .ShowComic > div span:hover {
+  color: crimson;
+  cursor: pointer;
+}
+.CharacterDetailPage .ShowComic b {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: crimson;
 }
