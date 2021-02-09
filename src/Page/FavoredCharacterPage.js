@@ -13,7 +13,7 @@ const FavoredCharacterPage = ({ authToken, FavoredDeleteCharacterClick }) => {
     const fetchData = async () => {
       console.log(authToken);
       const response = await axios.get(
-        `http://localhost:3100/user-read/${authToken}`
+        `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
       );
       setData(response.data);
       setIsLoading(false);

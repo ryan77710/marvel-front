@@ -29,7 +29,7 @@ function App() {
       const fetchdata = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3100/user-read/${authToken}`
+            `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
           );
           setUserData(response.data);
         } catch (error) {
@@ -51,7 +51,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `http://localhost:3100/Character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
+          `https://ryan-martel-backend.herokuapp.com/Character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
             description ? description : "Non autorisé"
           }&extension=${gif}`
         );
@@ -66,7 +66,7 @@ function App() {
       try {
         // console.log({ id, token, name });
         const response = await axios.get(
-          `http://localhost:3100/Character-favored-delete?id=${id}&token=${token}&name=${name}`
+          `https://ryan-martel-backend.herokuapp.com/Character-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {
@@ -94,7 +94,7 @@ function App() {
           extension: gif,
         };
         const response = await axios.post(
-          "http://localhost:3100/Comic-favored",
+          "https://ryan-martel-backend.herokuapp.com/Comic-favored",
           data
         );
         alert(response.data.message);
@@ -108,7 +108,7 @@ function App() {
       try {
         // console.log({ id, token, name });
         const response = await axios.get(
-          `http://localhost:3100/Comic-favored-delete?id=${id}&token=${token}&name=${name}`
+          `https://ryan-martel-backend.herokuapp.com/Comic-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {

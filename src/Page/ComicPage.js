@@ -15,7 +15,7 @@ const ComicPage = ({ authToken, FavoredAddComicClick }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/comics?limit=${limit2}&title=${search2}&skip=${
+        `https://ryan-martel-backend.herokuapp.com/comics?limit=${limit2}&title=${search2}&skip=${
           skip2 * 100
         }`
       );

@@ -16,7 +16,7 @@ const CharacterDetailPage = (props) => {
   useEffect(() => {
     const fetchdata = async () => {
       const response = await axios.get(
-        `http://localhost:3100/character-comic/${id}`
+        `https://ryan-martel-backend.herokuapp.com/character-comic/${id}`
       );
       setData(response.data);
       setIsLoading(false);
