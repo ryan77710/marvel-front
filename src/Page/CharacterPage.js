@@ -15,7 +15,7 @@ const Character = ({ authToken, FavoredAddCharacterClick }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/characters?name=${search1}&limit=${limit1}&skip=${
+        `http://localhost:3100/characters?name=${search1}&limit=${limit1}&skip=${
           skip1 * 100
         }`
       );
