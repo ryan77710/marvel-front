@@ -19,7 +19,6 @@ const ComicPage = ({ authToken, FavoredAddComicClick }) => {
           skip2 * 100
         }`
       );
-      console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };

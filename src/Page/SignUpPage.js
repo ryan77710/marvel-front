@@ -36,10 +36,9 @@ const SignUpPage = () => {
             },
           }
         );
-        console.log(response);
         history.push("/");
       } catch (error) {
-        console.log(error.response.data.message);
+        alert("Une erreur est survenue");
       }
     }
   };

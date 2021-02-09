@@ -12,7 +12,7 @@ const ShowComic = ({ data, setShowComic, setComicData, isLoading, user }) => {
       {isLoading ? (
         ""
       ) : (
-        <div className="ShowComic">
+        <div className="ShowComic slide-in-blurred-left">
           <div>
             <div>
               {pictureMissing === true || data.thumbnail.extension === "gif" ? (

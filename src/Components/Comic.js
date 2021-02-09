@@ -7,7 +7,7 @@ const Comic = (props) => {
   let pictureMissing = regex.test(src);
 
   return (
-    <div className="Comic">
+    <div className="Comic scale-up-hor-left">
       <p>
         <FontAwesomeIcon
           className="favored"

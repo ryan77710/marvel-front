@@ -5,6 +5,8 @@ import IsLoading from "../Components/IsLoading";
 import Pagination from "../Components/Pagination";
 
 const Character = ({ authToken, FavoredAddCharacterClick }) => {
+  // for animation delay
+  let counteur = 0;
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [search1, setSearch1] = useState("");
@@ -17,7 +19,6 @@ const Character = ({ authToken, FavoredAddCharacterClick }) => {
           skip1 * 100
         }`
       );
-      console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };
@@ -43,9 +44,10 @@ const Character = ({ authToken, FavoredAddCharacterClick }) => {
           ></Pagination>
           {data.results.map((poster, index) => {
             const src = `${poster.thumbnail.path}.${poster.thumbnail.extension}`;
-
+            counteur += 0.17;
             return (
               <Poster
+                delay={String(counteur) + "s"}
                 src={src}
                 token={authToken}
                 key={poster._id}

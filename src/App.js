@@ -33,7 +33,7 @@ function App() {
           );
           setUserData(response.data);
         } catch (error) {
-          console.log(error.message);
+          alert("Une erreur est survenue");
         }
       };
       fetchdata();
@@ -50,7 +50,6 @@ function App() {
   ) => {
     if (token) {
       try {
-        console.log({ src, description, name, id, token });
         const response = await axios.get(
           `http://localhost:3100/Character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
             description ? description : "Non autorisé"
@@ -58,7 +57,6 @@ function App() {
         );
         alert(response.data.message);
       } catch (error) {
-        console.log(error.message);
         alert("Une erreur est survenue");
       }
     } else alert("Authentifiez-vous !");
@@ -72,7 +70,6 @@ function App() {
         );
         alert(response.data.message);
       } catch (error) {
-        console.log(error.message);
         alert("Une erreur est survenue");
       }
     } else alert("Authentifiez-vous !");
@@ -88,8 +85,6 @@ function App() {
   ) => {
     if (token) {
       try {
-        console.log({ src, description, name, id, token });
-
         const data = {
           src: src,
           description: description ? description : "Non autorisé",
@@ -104,7 +99,6 @@ function App() {
         );
         alert(response.data.message);
       } catch (error) {
-        console.log(error.message);
         alert("Une erreur est survenue");
       }
     } else alert("Authentifiez-vous !");
@@ -118,7 +112,6 @@ function App() {
         );
         alert(response.data.message);
       } catch (error) {
-        console.log(error.message);
         alert("Une erreur est survenue");
       }
     } else alert("Authentifiez-vous !");

@@ -8,21 +8,27 @@ const Poster = (props) => {
   const regex = /available/;
   let pictureMissing = regex.test(src);
   return (
-    <div className="Poster">
+    <div
+      className="Poster bounce-in-right"
+      style={{ animationDelay: props.delay }}
+    >
       <div>
-        <div
-          onClick={() => history.push(`Character-detail-page/${id}`)}
-          className="Poster-img"
-          style={
-            pictureMissing === true || gif === "gif"
-              ? {
-                  backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuBzStwoUGsRHFFvRMIouit-_UH2s8Ahim-Q&usqp=CAU)`,
-                  opacity: "0.5",
-                }
-              : { backgroundImage: `url(${src})` }
-          }
-        ></div>
-        <div className={description && "hiden"}>
+        <div className="container">
+          <div
+            onClick={() => history.push(`Character-detail-page/${id}`)}
+            className="Poster-img kenburns-top"
+            style={
+              pictureMissing === true || gif === "gif"
+                ? {
+                    backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuBzStwoUGsRHFFvRMIouit-_UH2s8Ahim-Q&usqp=CAU)`,
+                    opacity: "0.5",
+                  }
+                : { backgroundImage: `url(${src})` }
+            }
+          ></div>
+        </div>
+
+        <div className={description && "hiden scale-in-hor-center"}>
           <p>{description}</p>
         </div>
       </div>

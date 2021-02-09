@@ -15,7 +15,6 @@ const FavoredCharacterPage = ({ authToken, FavoredDeleteCharacterClick }) => {
       const response = await axios.get(
         `http://localhost:3100/user-read/${authToken}`
       );
-      console.log(response);
       setData(response.data);
       setIsLoading(false);
     };

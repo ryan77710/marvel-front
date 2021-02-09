@@ -35,7 +35,12 @@ const FavoredPage = ({ authToken }) => {
                   Personnage
                 </button>
               </div>
-              <img src={result1} alt="wallpaper" />
+
+              <img
+                src={result1}
+                className="kenburns-top-loading "
+                alt="wallpaper"
+              />
             </div>
           ) : (
             <IsLoading />

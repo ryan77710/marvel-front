@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import IsLoading from "../Components/IsLoading";
 import ShowComic from "../Components/ShowComic";
+import pictureMini2 from "../pictureMini1.json";
 
 const CharacterDetailPage = (props) => {
   const { id } = useParams();
@@ -10,6 +11,7 @@ const CharacterDetailPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [comicData, setComicData] = useState();
   const [showComic, setShowComic] = useState(false);
+  const [result, setResult] = useState("");
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -21,6 +23,16 @@ const CharacterDetailPage = (props) => {
     };
     fetchdata();
   }, [id]);
+
+  useEffect(() => {
+    const numberHazard1 = (result) => {
+      result = pictureMini2[Math.floor(Math.random() * pictureMini2.length)];
+      setResult(result);
+    };
+    setInterval(() => {
+      numberHazard1();
+    }, 3500);
+  }, []);
   // modal appers
   const handleComicClick = (data) => {
     setComicData(data);
@@ -82,10 +94,7 @@ const CharacterDetailPage = (props) => {
                 );
               })}
             </div>
-            <img
-              src="https://i.pinimg.com/originals/fc/36/20/fc36203a28a4b8c7bd3654dcae771645.jpg"
-              alt="comic"
-            />
+            <img src={result} alt="comic" />
           </div>
           {showComic ? (
             <ShowComic
