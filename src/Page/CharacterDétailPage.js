@@ -84,7 +84,7 @@ const CharacterDetailPage = (props) => {
             </div>
             <img
               src="https://i.pinimg.com/originals/fc/36/20/fc36203a28a4b8c7bd3654dcae771645.jpg"
-              alt=""
+              alt="comic"
             />
           </div>
           {showComic ? (

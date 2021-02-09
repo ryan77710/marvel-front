@@ -2,45 +2,56 @@ import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Header = (props) => {
-  const { authToken, username, setAuthToken, setUser, picture } = props;
+  const { authToken, setAuthToken, userData, setUserData } = props;
   let history = useHistory();
 
   const userLogOut = () => {
     Cookies.remove("Token");
     setAuthToken(null);
-    setUser(null);
+    setUserData(null);
     alert("deconexion");
-    alert(authToken);
-    history.push("/login");
+    history.push("/");
   };
   return (
     <header>
       <img
         onClick={() => history.push("/")}
-        src="https://res.cloudinary.com/jerrick/image/upload/fl_progressive,q_auto,w_1024/zbufnpnlrrkwl8qyle7q.png"
+        src="https://wallpaperaccess.com/full/1112426.jpg"
         alt="logo-marvel"
       />
       <div>
         <img
           src={
-            picture ||
-            "https://res.cloudinary.com/jerrick/image/upload/fl_progressive,q_auto,w_1024/zbufnpnlrrkwl8qyle7q.png"
+            userData
+              ? userData.picture.url
+              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjFpg0P1tvjnU8sGPcwqyTueZ65utmvegb5w&usqp=CAU"
           }
-          alt={username}
+          alt={userData ? userData.username : "joker-anomyme"}
         />
         <p>
-          Bienvenue <b>{username}</b>
-          <br /> Accréditation: <b>niveaux 2</b>
+          Bienvenue <b> {userData ? userData.username : "Inconnue"}</b>
+          <br /> Accréditation:{" "}
+          <b> {userData ? "niveaux 2" : "non accrédité"}</b>
         </p>
       </div>
-      <button onClick={() => history.push("/")}>personnage</button>
-      <button onClick={() => history.push("/comic")}>comic</button>
-      {!props.authToken ? (
-        <button onClick={() => history.push("/login")}>Se connecter</button>
+      <button className="red" onClick={() => history.push("/")}>
+        Personnage
+      </button>
+      <button className="blue" onClick={() => history.push("/comic")}>
+        Comic
+      </button>
+      {!authToken ? (
+        <button className="white" onClick={() => history.push("/login")}>
+          Se connecter
+        </button>
       ) : (
-        <button onClick={userLogOut}>Se déconnecter</button>
+        <button className="white" onClick={userLogOut}>
+          Se déconnecter
+        </button>
       )}
-      <button>favorie</button>
+      <button className="cyan" onClick={() => history.push("favored")}>
+        Favorie
+      </button>
     </header>
   );
 };

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comic = (props) => {
-  const { src, title, description } = props;
+  const { src, title, description, iconOnClick } = props;
 
   const regex = /available/;
   let pictureMissing = regex.test(src);
@@ -9,8 +9,17 @@ const Comic = (props) => {
   return (
     <div className="Comic">
       <p>
-        <FontAwesomeIcon className="favored" icon="star" />
-        {description ? <span>Déclassified</span> : <span>Classified</span>}
+        <FontAwesomeIcon
+          className="favored"
+          icon="star"
+          onClick={iconOnClick}
+        />
+        {!description || description === "Non autorisé" ? (
+          <span>Classified</span>
+        ) : (
+          <span>Déclassified</span>
+        )}
+
         {title}
       </p>
       <div>
@@ -28,9 +37,9 @@ const Comic = (props) => {
           alt={title}
         />
         {!description ? (
-          <p className="hidden">{description} </p>
+          <p className="hidden"></p>
         ) : (
-          <p className="hidden boxShadow">{description} </p>
+          <p className="hidden boxShadow"> {description} </p>
         )}
       </div>
     </div>

@@ -20,10 +20,9 @@ const LoginPage = ({ userLogin }) => {
         data
       );
       const token = response.data.token;
-      const username = response.data.username;
-      const picture = response.data.picture.url;
-      console.log(username);
-      userLogin(username, token, picture);
+      // const picture = response.data.picture.url;
+      // console.log(username);
+      userLogin(token);
       history.push("/");
     } catch (error) {
       console.log(error.response.data.message);

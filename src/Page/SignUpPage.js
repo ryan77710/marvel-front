@@ -18,15 +18,13 @@ const SignUpPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== password2) {
-      alert("atttention pas egale");
+      alert("atttention mot de passe diférent");
     } else {
       const formData = new FormData();
       formData.append("email", email);
       formData.append("username", username);
       formData.append("picture", picture);
       formData.append("password", password);
-
-      console.log(formData);
 
       try {
         const response = await axios.post(
@@ -73,8 +71,14 @@ const SignUpPage = () => {
           onChange={handlePassword2Change}
         />
         <div>
-          <label htmlFor="picture">ok</label>
-          <input type="file" onChange={handlePictureChange} />
+          <label htmlFor="picture">Choisissez-une image</label>
+          <input
+            className="hidden"
+            type="file"
+            id="picture"
+            name="picture"
+            onChange={handlePictureChange}
+          />
         </div>
         <button type="submit">Inscrivez-vous 😉</button>
         <span onClick={() => history.push("/login")}>

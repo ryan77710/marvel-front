@@ -31,9 +31,8 @@ ComicPage ligne 151
   min-height: 100vh;
 }
 
-/* header component */
+/* header component ----------------------------------------------------------------------------------------------*/
 header {
-  border: red solid 1px;
   justify-content: space-around;
   display: flex;
   align-items: center;
@@ -44,7 +43,6 @@ header > img {
   border-radius: 5px;
 }
 header > div {
-  border: solid 1px blue;
   display: flex;
   align-items: center;
   object-fit: contain;
@@ -59,7 +57,55 @@ header > div img {
 header b {
   color: crimson;
 }
-/* Pagination */
+header button {
+  background-color: transparent;
+  outline: none;
+  height: 40px;
+  width: 100px;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding-left: 3px;
+  cursor: pointer;
+  transition: 1.5s;
+}
+/* header button effect  */
+.red {
+  border: crimson solid 1px;
+}
+.red:hover {
+  box-shadow: 0px 0px 10px 0 rgb(250, 34, 78) inset,
+    0px 0px 10px 0 rgb(250, 34, 78) inset, 0px 0px 10px 0 rgb(250, 34, 78) inset,
+    0px 0px 10px 0 rgb(250, 34, 78) inset;
+  text-shadow: 0 0 5px rgb(250, 34, 78), 0 0 5px rgb(250, 34, 78);
+}
+.cyan {
+  border: #15f4ee solid 1px;
+}
+.cyan:hover {
+  box-shadow: 0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset,
+    0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset;
+  text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+.white {
+  border: #ffffff solid 1px;
+}
+.white:hover {
+  box-shadow: 0px 0px 10px 0 #ffffff inset, 0px 0px 10px 0 #ffffff inset,
+    0px 0px 10px 0 #ffffff inset, 0px 0px 10px 0 #ffffff inset;
+  text-shadow: 0 0 5px #ffffff, 0 0 5px #ffffff;
+}
+.blue {
+  border: rgb(33, 0, 248) solid 1px;
+}
+.blue:hover {
+  box-shadow: 0px 0px 10px 0 rgb(33, 0, 248) inset,
+    0px 0px 10px 0 rgb(33, 0, 248) inset, 0px 0px 10px 0 rgb(33, 0, 248) inset,
+    0px 0px 10px 0 rgb(33, 0, 248) inset;
+  text-shadow: 0 0 5px rgb(33, 0, 248), 0 0 5px rgb(33, 0, 248);
+}
+
+/* Pagination ----------------------------------------------------------------------------------------------*/
 .Pagination {
   width: 100vw;
   color: red;
@@ -100,7 +146,7 @@ header b {
   color: rgb(46, 91, 129);
 }
 
-/* CharacterPage  */
+/* CharacterPage and favoredCharacterPage---------------------------------------------------------------------------------------------- */
 .CharacterPage {
   width: 100%;
   display: flex;
@@ -157,20 +203,19 @@ header b {
   right: 5px;
   cursor: pointer;
 }
+
 .CharacterPage .Poster span {
   position: absolute;
   top: 0px;
   color: red;
 }
-/* LoginPage and SignUpPage */
+/* LoginPage and SignUpPage ----------------------------------------------------------------------------------------------*/
 .LoginPage form,
 .SignUpPage form {
   display: flex;
   flex-direction: column;
-  /* height: 300px; */
   justify-content: space-around;
   align-items: center;
-  /* border: blueviolet 1px solid; */
   width: 20%;
 }
 
@@ -182,16 +227,38 @@ header b {
   font-size: 20px;
   margin-bottom: 20px;
   width: 100%;
+  background-color: transparent;
+  outline-color: #15f4ee;
+  color: #15f4ee;
 }
-.LoginPage form input:focus,
-.SignUpPage form input:focus {
-  outline-color: crimson;
+.SignUpPage label {
+  cursor: pointer;
+}
+
+.SignUpPage .hidden {
+  display: none;
 }
 .LoginPage form button,
 .SignUpPage form button {
   height: 40px;
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 30px;
   font-size: 20px;
+  border: solid 1px #15f4ee;
+  border-radius: 20px;
+  color: #15f4ee;
+  background-color: transparent;
+  transition: 1.5s;
+  cursor: pointer;
 }
+.LoginPage form button:hover,
+.SignUpPage form button:hover {
+  box-shadow: 0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset,
+    0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset;
+  text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+
 .SignUpPage span,
 .LoginPage span {
   margin-top: 10px;
@@ -201,7 +268,7 @@ header b {
   color: crimson;
   cursor: pointer;
 }
-/* ComicPage */
+/* ComicPage  ----------------------------------------------------------------------------------------------*/
 .ComicPage {
   color: rgb(32, 101, 161);
 }
@@ -221,7 +288,9 @@ header b {
 }
 .ComicPage p .favored {
   margin-right: 20px;
+  cursor: pointer;
 }
+
 .ComicPage p span {
   margin-right: 10px;
   color: red;
@@ -264,10 +333,9 @@ header b {
   -webkit-box-shadow: 12px 12px 9px 4px red;
   -moz-box-shadow: 12px 12px 9px 4px red;
 }
-/* CharacterDetailPage */
+/* CharacterDetailPage ---------------------------------------------------------------------------------------------- */
 
 .CharacterDetailPage {
-  /* background-color: khaki; */
   height: 88.5vh;
   display: flex;
 }
@@ -276,7 +344,6 @@ header b {
   box-sizing: border-box;
   padding: 20px;
   width: 100%;
-  /* border: solid 1px blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -342,7 +409,7 @@ header b {
   object-fit: contain;
 }
 
-/* .CharacterDetailPage .ShowComic modal */
+/* .CharacterDetailPage .ShowComic modal ---------------------------------------------------------------------------------------------- */
 .CharacterDetailPage .ShowComic {
   color: red;
   position: absolute;
@@ -400,7 +467,6 @@ header b {
   color: rgb(255, 255, 255);
   height: 60%;
   display: flex;
-  align-items: center;
   justify-content: center;
   border: wheat solid 1px;
   overflow: hidden;
@@ -423,4 +489,55 @@ header b {
   top: 10px;
   left: 10px;
   color: crimson;
+}
+/* FavoredPage ----------------------------------------------------------------------------------------------*/
+.FavoredPage {
+  display: flex;
+  height: 88.5vh;
+  width: 100vw;
+}
+.FavoredPage > * {
+  width: 33vw;
+  height: 88.5vh;
+}
+.FavoredPage > img {
+  box-shadow: 0px -1px 42px 47px rgba(0, 0, 0, 1) inset;
+  -webkit-box-shadow: 0px -1px 42px 47px rgba(0, 0, 0, 1) inset;
+  -moz-box-shadow: 0px -1px 42px 47px rgba(0, 0, 0, 1) inset;
+}
+.FavoredPage > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.FavoredPage > div button {
+  height: 40px;
+  width: 34%;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: transparent;
+  transition: 1.5s;
+  cursor: pointer;
+  outline: none;
+}
+
+.FavoredPage > div > button:nth-child(1) {
+  border: solid 1px #ff00b3;
+  color: #ff00b3;
+}
+.FavoredPage > div > button:nth-child(1):hover {
+  box-shadow: 0px 0px 10px 0 #ff00b3 inset, 0px 0px 10px 0 #ff00b3 inset,
+    0px 0px 10px 0 #ff00b3 inset, 0px 0px 10px 0 #ff00b3 inset;
+  text-shadow: 0 0 5px #ff00b3, 0 0 5px #ff00b3;
+  color: white;
+}
+.FavoredPage > div > button:nth-child(2) {
+  border: solid 1px #8400ff;
+  color: #8400ff;
+}
+.FavoredPage > div > button:nth-child(2):hover {
+  color: white;
+  box-shadow: 0px 0px 10px 0 #8400ff inset, 0px 0px 10px 0 #8400ff inset,
+    0px 0px 10px 0 #8400ff inset, 0px 0px 10px 0 #8400ff inset;
+  text-shadow: 0 0 5px #8400ff, 0 0 5px #8400ff;
 }

@@ -4,7 +4,7 @@ import Poster from "../Components/Poster";
 import IsLoading from "../Components/IsLoading";
 import Pagination from "../Components/Pagination";
 
-const Character = () => {
+const Character = ({ authToken, FavoredAddCharacterClick }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [search1, setSearch1] = useState("");
@@ -24,7 +24,6 @@ const Character = () => {
     fetchData();
   }, [limit1, search1, skip1]);
 
-  console.log(data);
   return (
     <>
       {isLoading ? (
@@ -48,11 +47,22 @@ const Character = () => {
             return (
               <Poster
                 src={src}
+                token={authToken}
+                key={poster._id}
                 id={poster._id}
-                key={index}
                 name={poster.name}
                 description={poster.description}
                 gif={poster.thumbnail.extension}
+                iconOnClick={() =>
+                  FavoredAddCharacterClick(
+                    poster._id,
+                    authToken,
+                    poster.name,
+                    src,
+                    poster.description,
+                    poster.thumbnail.extension
+                  )
+                }
               ></Poster>
             );
           })}

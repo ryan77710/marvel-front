@@ -4,7 +4,7 @@ import IsLoading from "../Components/IsLoading";
 import Comic from "../Components/Comic";
 import Pagination from "../Components/Pagination";
 
-const ComicPage = () => {
+const ComicPage = ({ authToken, FavoredAddComicClick }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,6 +54,16 @@ const ComicPage = () => {
                   title={comic.title}
                   description={comic.description}
                   gif={comic.thumbnail.extension}
+                  iconOnClick={() =>
+                    FavoredAddComicClick(
+                      comic._id,
+                      authToken,
+                      comic.title,
+                      src,
+                      comic.description,
+                      comic.thumbnail.extension
+                    )
+                  }
                 ></Comic>
               );
             })}

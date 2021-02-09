@@ -3,19 +3,15 @@ import { useHistory } from "react-router-dom";
 
 const Poster = (props) => {
   let history = useHistory();
-  const { src, name, description, gif, id } = props;
-  if (!name && !description) {
-    // alert("name et description existe pas ");
-  }
+  const { src, name, description, gif, id, iconOnClick } = props;
+
   const regex = /available/;
   let pictureMissing = regex.test(src);
   return (
-    <div
-      className="Poster"
-      onClick={() => history.push(`Character-detail-page/${id}`)}
-    >
+    <div className="Poster">
       <div>
         <div
+          onClick={() => history.push(`Character-detail-page/${id}`)}
           className="Poster-img"
           style={
             pictureMissing === true || gif === "gif"
@@ -31,8 +27,17 @@ const Poster = (props) => {
         </div>
       </div>
       <p>{name}</p>
-      <FontAwesomeIcon className="favored" icon="star" />
-      {description ? (
+
+      {/* // click slowly for avoid bug */}
+
+      <FontAwesomeIcon
+        className="favored"
+        icon="star"
+        onClick={iconOnClick}
+        title="click slowly for avoid bug
+        "
+      />
+      {description && description !== "Non autorisé" ? (
         <span title="Déclassified" className="déclassified">
           D
         </span>
