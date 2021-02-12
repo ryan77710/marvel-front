@@ -30,7 +30,7 @@ const SignUpPage = ({ userLogin }) => {
 
       try {
         const response = await axios.post(
-          "http://localhost:3100/user/signup",
+          "https://ryan-martel-backend.herokuapp.com/user/signup",
           formData,
           {
             headers: {

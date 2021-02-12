@@ -1,0 +1,40 @@
+/* Pagination ----------------------------------------------------------------------------------------------*/
+.Pagination {
+  width: 100vw;
+  color: red;
+  margin-bottom: 20px;
+}
+.Pagination > div {
+  display: flex;
+  justify-content: center;
+}
+.Pagination > div > div {
+  margin-right: 20px;
+}
+.Pagination > div > div label {
+  margin-right: 10px;
+}
+.Pagination input {
+  background-color: transparent;
+  color: crimson;
+  outline: crimson;
+  border: none;
+  border: rgb(46, 91, 129) 1px solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+.Pagination input[type="text"]:focus {
+  background-color: rgb(46, 91, 129);
+  color: white;
+  border: white solid 1px;
+}
+
+.Pagination P > span:nth-child(1) {
+  color: rgb(46, 91, 129);
+
+  margin-right: 10px;
+}
+.Pagination P > span:nth-child(2) {
+  color: rgb(46, 91, 129);
+}

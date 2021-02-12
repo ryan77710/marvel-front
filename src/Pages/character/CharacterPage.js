@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+
+import Poster from "../../Components/Poster";
+import IsLoading from "../../Components/IsLoading";
+import Pagination from "../../Components/pagination/Pagination";
+
 import axios from "axios";
-import Poster from "../Components/Poster";
-import IsLoading from "../Components/IsLoading";
-import Pagination from "../Components/Pagination";
 
 const Character = (props) => {
   const { authToken, favoredAddCharacterClick, checkPictureMissing } = props;
-  //counteur for animation delay of Poster
+  //delay for animation delay of Poster
   let delay = 0;
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +20,7 @@ const Character = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/characters?name=${searchCharacter}&limit=${limitCharacter}&skip=${
+        `https://ryan-martel-backend.herokuapp.com/characters?name=${searchCharacter}&limit=${limitCharacter}&skip=${
           skipCharacter * 100
         }`
       );

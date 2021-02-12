@@ -1,0 +1,47 @@
+/* FavoredPage ----------------------------------------------------------------------------------------------*/
+.FavoredPage {
+  display: flex;
+  height: 88.5vh;
+  width: 100vw;
+}
+.FavoredPage > * {
+  width: 33vw;
+  height: 88.5vh;
+}
+
+.FavoredPage > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.FavoredPage > div button {
+  height: 40px;
+  width: 34%;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: transparent;
+  transition: 1.5s;
+  cursor: pointer;
+  outline: none;
+}
+
+.FavoredPage > div > button:nth-child(1) {
+  border: solid 1px #ff00b3;
+  color: #ff00b3;
+}
+.FavoredPage > div > button:nth-child(1):hover {
+  box-shadow: 0px 0px 10px 0 #ff00b3 inset, 0px 0px 10px 0 #ff00b3 inset,
+    0px 0px 10px 0 #ff00b3 inset, 0px 0px 10px 0 #ff00b3 inset;
+  text-shadow: 0 0 5px #ff00b3, 0 0 5px #ff00b3;
+  color: white;
+}
+.FavoredPage > div > button:nth-child(2) {
+  border: solid 1px #8400ff;
+  color: #8400ff;
+}
+.FavoredPage > div > button:nth-child(2):hover {
+  color: white;
+  box-shadow: 0px 0px 10px 0 #8400ff inset, 0px 0px 10px 0 #8400ff inset,
+    0px 0px 10px 0 #8400ff inset, 0px 0px 10px 0 #8400ff inset;
+  text-shadow: 0 0 5px #8400ff, 0 0 5px #8400ff;
+}

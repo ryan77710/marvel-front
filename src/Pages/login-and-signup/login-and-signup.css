@@ -1,0 +1,64 @@
+/* LoginPage and SignUpPage ----------------------------------------------------------------------------------------------*/
+.LoginPage,
+.SignUpPage {
+  background-color: black;
+  background-image: none;
+}
+.LoginPage form,
+.SignUpPage form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+}
+
+.LoginPage form input,
+.SignUpPage form input {
+  height: 40px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: transparent;
+  outline-color: #15f4ee;
+  color: #15f4ee;
+}
+.SignUpPage label {
+  cursor: pointer;
+}
+
+.SignUpPage .hidden {
+  display: none;
+}
+.LoginPage form button,
+.SignUpPage form button {
+  height: 40px;
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  border: solid 1px #15f4ee;
+  border-radius: 20px;
+  color: #15f4ee;
+  background-color: transparent;
+  transition: 1.5s;
+  cursor: pointer;
+}
+.LoginPage form button:hover,
+.SignUpPage form button:hover {
+  box-shadow: 0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset,
+    0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset;
+  text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+
+.SignUpPage span,
+.LoginPage span {
+  margin-top: 10px;
+}
+.SignUpPage span:hover,
+.LoginPage span:hover {
+  color: crimson;
+  cursor: pointer;
+}

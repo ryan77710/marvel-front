@@ -1,0 +1,80 @@
+/* header component ----------------------------------------------------------------------------------------------*/
+header {
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+header > img {
+  height: 60px;
+  border-radius: 5px;
+  transition: 3s;
+}
+header > img:hover {
+  margin-top: 30px;
+  margin-left: 200px;
+  transform: scale(3);
+  cursor: pointer;
+}
+header > div {
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  color: aliceblue;
+}
+header > div img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+header b {
+  color: crimson;
+}
+header button {
+  background-color: transparent;
+  outline: none;
+  height: 40px;
+  width: 100px;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding-left: 3px;
+  cursor: pointer;
+  transition: 1.5s;
+}
+/* header button effect  */
+.red {
+  border: crimson solid 1px;
+}
+.red:hover {
+  box-shadow: 0px 0px 10px 0 rgb(250, 34, 78) inset,
+    0px 0px 10px 0 rgb(250, 34, 78) inset, 0px 0px 10px 0 rgb(250, 34, 78) inset,
+    0px 0px 10px 0 rgb(250, 34, 78) inset;
+  text-shadow: 0 0 5px rgb(250, 34, 78), 0 0 5px rgb(250, 34, 78);
+}
+.cyan {
+  border: #15f4ee solid 1px;
+}
+.cyan:hover {
+  box-shadow: 0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset,
+    0px 0px 10px 0 #15f4ee inset, 0px 0px 10px 0 #15f4ee inset;
+  text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+.white {
+  border: #ffffff solid 1px;
+}
+.white:hover {
+  box-shadow: 0px 0px 10px 0 #ffffff inset, 0px 0px 10px 0 #ffffff inset,
+    0px 0px 10px 0 #ffffff inset, 0px 0px 10px 0 #ffffff inset;
+  text-shadow: 0 0 5px #ffffff, 0 0 5px #ffffff;
+}
+.blue {
+  border: rgb(33, 0, 248) solid 1px;
+}
+.blue:hover {
+  box-shadow: 0px 0px 10px 0 rgb(33, 0, 248) inset,
+    0px 0px 10px 0 rgb(33, 0, 248) inset, 0px 0px 10px 0 rgb(33, 0, 248) inset,
+    0px 0px 10px 0 rgb(33, 0, 248) inset;
+  text-shadow: 0 0 5px rgb(33, 0, 248), 0 0 5px rgb(33, 0, 248);
+}

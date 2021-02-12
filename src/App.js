@@ -2,16 +2,16 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import SignUpPage from "./Pages/SignUpPage";
-import LoginPage from "./Pages/LoginPage";
-import ComicPage from "./Pages/ComicPage";
-import CharacterPage from "./Pages/CharacterPage";
-import CharacterDetailPage from "./Pages/CharacterDetailPage";
-import FavoredCharacterPage from "./Pages/FavoredCharacterPage";
-import FavoredPage from "./Pages/FavoredPage";
-import FavoredComicPage from "./Pages/FavoredComicPage";
+import SignUpPage from "./Pages/login-and-signup/SignUpPage";
+import LoginPage from "./Pages/login-and-signup/LoginPage";
+import ComicPage from "./Pages/comic/ComicPage";
+import CharacterPage from "./Pages/character/CharacterPage";
+import CharacterDetailPage from "./Pages/character-detail/CharacterDetailPage";
+import FavoredCharacterPage from "./Pages/character/FavoredCharacterPage";
+import FavoredPage from "./Pages/favored-page/FavoredPage";
+import FavoredComicPage from "./Pages/comic/FavoredComicPage";
 
-import Header from "./Components/Header";
+import Header from "./Components/header/Header";
 import PageNotFound from "./Components/PageNotFound";
 
 import Cookies from "js-cookie";
@@ -39,7 +39,7 @@ function App() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3100/user-read/${authToken}`
+            `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
           );
           setUserData(response.data);
         } catch (error) {
@@ -60,7 +60,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `http://localhost:3100/Character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
+          `https://ryan-martel-backend.herokuapp.com/character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
             description ? description : "Non autorisé"
           }&extension=${gif}`
         );
@@ -75,7 +75,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `http://localhost:3100/Character-favored-delete?id=${id}&token=${token}&name=${name}`
+          `https://ryan-martel-backend.herokuapp.com/character-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {
@@ -103,7 +103,7 @@ function App() {
           extension: gif,
         };
         const response = await axios.post(
-          "http://localhost:3100/Comic-favored",
+          "https://ryan-martel-backend.herokuapp.com/comic-favored",
           data
         );
         alert(response.data.message);
@@ -116,7 +116,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `http://localhost:3100/Comic-favored-delete?id=${id}&token=${token}&name=${name}`
+          `https://ryan-martel-backend.herokuapp.com/comic-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {
@@ -146,7 +146,7 @@ function App() {
               setAuthToken={setAuthToken}
             />
           </Route>
-          <Route exact path="/Character-detail-page/:id">
+          <Route exact path="/character-detail-page/:id">
             <CharacterDetailPage
               user={userData ? userData.username : ""}
               checkPictureMissing={checkPictureMissing}

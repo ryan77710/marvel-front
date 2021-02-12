@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import IsLoading from "../Components/IsLoading";
-import Comic from "../Components/Comic";
+import IsLoading from "../../Components/IsLoading";
+import Comic from "../../Components/Comic";
 import axios from "axios";
 
 const FavoredComicPage = (props) => {
@@ -12,7 +12,7 @@ const FavoredComicPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/user-read/${authToken}`
+        `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
       );
       setData(response.data);
       setIsLoading(false);

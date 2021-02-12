@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import IsLoading from "../Components/IsLoading";
-import ShowComic from "../Components/ShowComic";
-import pictureDetailPage from "../pictureDetailPage.json";
+import IsLoading from "../../Components/IsLoading";
+import ShowComic from "../../Components/ShowComic";
+import pictureDetailPage from "../../pictureDetailPage.json";
 
 const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/character-comic/${id}`
+        `https://ryan-martel-backend.herokuapp.com/character-comic/${id}`
       );
       setData(response.data);
       setIsLoading(false);

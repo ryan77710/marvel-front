@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
-import IsLoading from "../Components/IsLoading";
-import pictureFavoredPage from "../pictureFavoredPage.json";
+import IsLoading from "../../Components/IsLoading";
+import pictureFavoredPage from "../../pictureFavoredPage.json";
 
 const FavoredPage = ({ authToken }) => {
   let history = useHistory();

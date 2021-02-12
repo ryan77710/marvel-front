@@ -1,0 +1,101 @@
+/* ComicPage  ----------------------------------------------------------------------------------------------*/
+.ComicPage {
+  color: rgb(32, 101, 161);
+}
+.ComicPage > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.ComicPage .Comic {
+  margin-bottom: 20px;
+  width: 40vw;
+}
+/* animation for comic */
+.scale-up-hor-left {
+  -webkit-animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-hor-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@-webkit-keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+    transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+  }
+}
+@keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+    transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+  }
+}
+
+.ComicPage p {
+  color: aliceblue;
+  margin-bottom: 10px;
+}
+.ComicPage p .favored {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.ComicPage p span {
+  margin-right: 10px;
+  color: red;
+}
+.ComicPage .Comic > div {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  max-height: 300px;
+}
+.ComicPage img {
+  height: 300px;
+  width: 300px;
+  box-sizing: border-box;
+  border: rgb(32, 101, 161) 2px solid;
+
+  cursor: pointer;
+}
+.ComicPage .Comic > div p {
+  display: none;
+  box-sizing: border-box;
+  padding: auto;
+  flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 300px;
+}
+.ComicPage .Comic > div:hover {
+  width: 100%;
+  transition: 4s;
+}
+
+.ComicPage .Comic > div:hover p {
+  display: flex;
+  cursor: row-resize;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.ComicPage .boxShadow {
+  box-shadow: 12px 12px 9px 4px red;
+  -webkit-box-shadow: 12px 12px 9px 4px red;
+  -moz-box-shadow: 12px 12px 9px 4px red;
+}

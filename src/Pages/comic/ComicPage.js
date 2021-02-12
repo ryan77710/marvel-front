@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import IsLoading from "../Components/IsLoading";
-import Comic from "../Components/Comic";
-import Pagination from "../Components/Pagination";
+import IsLoading from "../../Components/IsLoading";
+import Comic from "../../Components/Comic";
+import Pagination from "../../Components/pagination/Pagination";
 import axios from "axios";
 
 const ComicPage = (props) => {
@@ -16,7 +16,7 @@ const ComicPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/comics?limit=${limitComic}&title=${searchComic}&skip=${
+        `https://ryan-martel-backend.herokuapp.com/comics?limit=${limitComic}&title=${searchComic}&skip=${
           skipComic * 100
         }`
       );
