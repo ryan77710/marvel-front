@@ -4,26 +4,29 @@ import Poster from "../Components/Poster";
 import IsLoading from "../Components/IsLoading";
 import Pagination from "../Components/Pagination";
 
-const Character = ({ authToken, FavoredAddCharacterClick }) => {
-  // for animation delay
-  let counteur = 0;
+const Character = (props) => {
+  const { authToken, favoredAddCharacterClick, checkPictureMissing } = props;
+  //counteur for animation delay of Poster
+  let delay = 0;
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [search1, setSearch1] = useState("");
-  const [limit1, setLimit1] = useState(100);
-  const [skip1, setSkip1] = useState(0);
+
+  const [searchCharacter, setSearchCharacter] = useState("");
+  const [limitCharacter, setLimitCharacter] = useState(100);
+  const [skipCharacter, setSkipCharacter] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/characters?name=${search1}&limit=${limit1}&skip=${
-          skip1 * 100
+        `http://localhost:3100/characters?name=${searchCharacter}&limit=${limitCharacter}&skip=${
+          skipCharacter * 100
         }`
       );
       setData(response.data);
       setIsLoading(false);
     };
     fetchData();
-  }, [limit1, search1, skip1]);
+  }, [limitCharacter, searchCharacter, skipCharacter]);
 
   return (
     <>
@@ -32,22 +35,23 @@ const Character = ({ authToken, FavoredAddCharacterClick }) => {
       ) : (
         <div className="CharacterPage">
           <Pagination
-            for="Characters"
+            type="Characters"
             text={"Nom"}
-            search1={search1}
-            setSearch1={setSearch1}
-            limit1={limit1}
-            setLimit1={setLimit1}
-            skip1={skip1}
-            setSkip1={setSkip1}
+            searchCharacter={searchCharacter}
+            setSearchCharacter={setSearchCharacter}
+            limitCharacter={limitCharacter}
+            setLimitCharacter={setLimitCharacter}
+            skipCharacter={skipCharacter}
+            setSkipCharacter={setSkipCharacter}
             count={data.count}
           ></Pagination>
           {data.results.map((poster, index) => {
             const src = `${poster.thumbnail.path}.${poster.thumbnail.extension}`;
-            counteur += 0.17;
+            delay += 0.17;
             return (
               <Poster
-                delay={String(counteur) + "s"}
+                delay={delay}
+                checkPictureMissing={checkPictureMissing}
                 src={src}
                 token={authToken}
                 key={poster._id}
@@ -56,7 +60,7 @@ const Character = ({ authToken, FavoredAddCharacterClick }) => {
                 description={poster.description}
                 gif={poster.thumbnail.extension}
                 iconOnClick={() =>
-                  FavoredAddCharacterClick(
+                  favoredAddCharacterClick(
                     poster._id,
                     authToken,
                     poster.name,

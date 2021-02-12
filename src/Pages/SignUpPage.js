@@ -1,23 +1,25 @@
 import { useState } from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
-const SignUpPage = () => {
+import axios from "axios";
+
+const SignUpPage = ({ userLogin }) => {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [picture, setPicture] = useState();
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [ConfirmePassword, setConfirmePassword] = useState("");
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handleUsernameChange = (event) => setUsername(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
-  const handlePassword2Change = (event) => setPassword2(event.target.value);
+  const handleConfirmePasswordChange = (event) =>
+    setConfirmePassword(event.target.value);
   const handlePictureChange = (event) => setPicture(event.target.files[0]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password !== password2) {
+    if (password !== ConfirmePassword) {
       alert("atttention mot de passe diférent");
     } else {
       const formData = new FormData();
@@ -28,7 +30,7 @@ const SignUpPage = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:3100/user/signUp",
+          "http://localhost:3100/user/signup",
           formData,
           {
             headers: {
@@ -36,6 +38,7 @@ const SignUpPage = () => {
             },
           }
         );
+        userLogin(response.data.token);
         history.push("/");
       } catch (error) {
         alert("Une erreur est survenue");
@@ -53,7 +56,7 @@ const SignUpPage = () => {
         />
         <input
           type="text"
-          placeholder="username"
+          placeholder="utilisateur"
           value={username}
           onChange={handleUsernameChange}
         />
@@ -65,9 +68,9 @@ const SignUpPage = () => {
         />
         <input
           type="password"
-          placeholder="Mot de passe"
-          value={password2}
-          onChange={handlePassword2Change}
+          placeholder="Confirmé le  mot de passe"
+          value={ConfirmePassword}
+          onChange={handleConfirmePasswordChange}
         />
         <div>
           <label htmlFor="picture">Choisissez-une image</label>

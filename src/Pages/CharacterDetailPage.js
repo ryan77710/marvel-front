@@ -3,47 +3,44 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import IsLoading from "../Components/IsLoading";
 import ShowComic from "../Components/ShowComic";
-import pictureMini2 from "../pictureMini1.json";
+import pictureDetailPage from "../pictureDetailPage.json";
 
-const CharacterDetailPage = (props) => {
+const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   const { id } = useParams();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comicData, setComicData] = useState();
   const [showComic, setShowComic] = useState(false);
-  const [result, setResult] = useState("");
+  const [randomPicture, setRandomPicture] = useState("");
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchData = async () => {
       const response = await axios.get(
         `http://localhost:3100/character-comic/${id}`
       );
       setData(response.data);
       setIsLoading(false);
     };
-    fetchdata();
+    fetchData();
   }, [id]);
 
   useEffect(() => {
-    const numberHazard1 = (result) => {
-      result = pictureMini2[Math.floor(Math.random() * pictureMini2.length)];
-      setResult(result);
+    const randomPicture = () => {
+      let picture =
+        pictureDetailPage[Math.floor(Math.random() * pictureDetailPage.length)];
+      setRandomPicture(picture);
     };
     setInterval(() => {
-      numberHazard1();
+      randomPicture();
     }, 3500);
   }, []);
+
   // modal appers
-  const handleComicClick = (data) => {
-    setComicData(data);
+  const handleComicClick = (comic) => {
+    setComicData(comic);
     setShowComic(true);
   };
-  let src;
-  if (!isLoading) {
-    src = `${data.thumbnail.path}.${data.thumbnail.extension}`;
-  }
-  const regex = /available/;
-  let pictureMissing = regex.test(src);
+  let pictureMissing;
 
   return (
     <>
@@ -51,6 +48,7 @@ const CharacterDetailPage = (props) => {
         <IsLoading />
       ) : (
         <div className="CharacterDetailPage">
+          {(pictureMissing = checkPictureMissing(data.thumbnail.path))}
           <div>
             {pictureMissing === true || data.thumbnail.extension === "gif" ? (
               <img
@@ -58,7 +56,10 @@ const CharacterDetailPage = (props) => {
                 alt="top secret"
               ></img>
             ) : (
-              <img src={src} alt={data.name} />
+              <img
+                src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
+                alt={data.name}
+              />
             )}
 
             <p>{data.name}</p>
@@ -75,8 +76,7 @@ const CharacterDetailPage = (props) => {
               <span>Comics: {data.comics.length}</span>
               {data.comics.map((comic, index) => {
                 const srcComic = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
-                const regex = /available/;
-                let pictureComicMissing = regex.test(srcComic);
+                let pictureComicMissing = checkPictureMissing(srcComic);
                 return (
                   <img
                     key={index}
@@ -94,11 +94,11 @@ const CharacterDetailPage = (props) => {
                 );
               })}
             </div>
-            <img src={result} alt="comic" />
+            <img src={randomPicture} alt="comic" />
           </div>
           {showComic ? (
             <ShowComic
-              user={props.user}
+              user={user}
               data={comicData}
               isLoading={isLoading}
               showComic={showComic}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 const ShowComic = ({ data, setShowComic, setComicData, isLoading, user }) => {
   const [check, setCheck] = useState("");
 
@@ -28,7 +29,7 @@ const ShowComic = ({ data, setShowComic, setComicData, isLoading, user }) => {
             <p>{data.title}</p>
             <input
               type="text"
-              placeholder="Authorization = Username"
+              placeholder="Autorisation = Utilisateur"
               value={check}
               onChange={handleCheckChange}
             />

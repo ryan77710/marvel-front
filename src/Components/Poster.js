@@ -1,16 +1,25 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Poster = (props) => {
   let history = useHistory();
-  const { src, name, description, gif, id, iconOnClick } = props;
+  const {
+    src,
+    name,
+    description,
+    gif,
+    id,
+    iconOnClick,
+    delay,
+    checkPictureMissing,
+  } = props;
 
-  const regex = /available/;
-  let pictureMissing = regex.test(src);
+  let pictureMissing = checkPictureMissing(src);
+
   return (
     <div
       className="Poster bounce-in-right"
-      style={{ animationDelay: props.delay }}
+      style={{ animationDelay: `${delay}s` }}
     >
       <div>
         <div className="container">
@@ -33,8 +42,6 @@ const Poster = (props) => {
         </div>
       </div>
       <p>{name}</p>
-
-      {/* // click slowly for avoid bug */}
 
       <FontAwesomeIcon
         className="favored"

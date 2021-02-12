@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import IsLoading from "../Components/IsLoading";
 import Comic from "../Components/Comic";
 import Pagination from "../Components/Pagination";
+import axios from "axios";
 
-const ComicPage = ({ authToken, FavoredAddComicClick }) => {
+const ComicPage = (props) => {
+  const { authToken, favoredAddComicClick, checkPictureMissing } = props;
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const [search2, setSearch2] = useState("");
-  const [limit2, setLimit2] = useState(100);
-  const [skip2, setSkip2] = useState(0);
+  const [searchComic, setSearchComic] = useState("");
+  const [limitComic, setLimitComic] = useState(100);
+  const [skipComic, setSkipComic] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3100/comics?limit=${limit2}&title=${search2}&skip=${
-          skip2 * 100
+        `http://localhost:3100/comics?limit=${limitComic}&title=${searchComic}&skip=${
+          skipComic * 100
         }`
       );
       setData(response.data);
       setIsLoading(false);
     };
     fetchData();
-  }, [search2, limit2, skip2]);
-  console.log(data);
+  }, [searchComic, limitComic, skipComic]);
 
   return (
     <>
@@ -34,14 +34,14 @@ const ComicPage = ({ authToken, FavoredAddComicClick }) => {
         <div className="ComicPage">
           <div>
             <Pagination
-              for="Comics"
+              type="Comics"
               text="Titre"
-              search2={search2}
-              setSearch2={setSearch2}
-              limit2={limit2}
-              setLimit2={setLimit2}
-              skip2={skip2}
-              setSkip2={setSkip2}
+              searchComic={searchComic}
+              setSearchComic={setSearchComic}
+              limitComic={limitComic}
+              setLimitComic={setLimitComic}
+              skipComic={skipComic}
+              setSkipComic={setSkipComic}
               count={data.count}
             ></Pagination>
             {data.results.map((comic, index) => {
@@ -52,9 +52,10 @@ const ComicPage = ({ authToken, FavoredAddComicClick }) => {
                   key={index}
                   title={comic.title}
                   description={comic.description}
+                  checkPictureMissing={checkPictureMissing}
                   gif={comic.thumbnail.extension}
                   iconOnClick={() =>
-                    FavoredAddComicClick(
+                    favoredAddComicClick(
                       comic._id,
                       authToken,
                       comic.title,

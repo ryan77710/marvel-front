@@ -1,40 +1,62 @@
 const Pagination = (props) => {
   // props for page CharacterPage
-  const { search1, skip1, limit1, setSearch1, setLimit1, setSkip1 } = props;
+  const {
+    searchCharacter,
+    skipCharacter,
+    limitCharacter,
+    setSearchCharacter,
+    setLimitCharacter,
+    setSkipCharacter,
+  } = props;
   // props for ComicPage
-  const { search2, skip2, limit2, setSearch2, setLimit2, setSkip2 } = props;
+  const {
+    searchComic,
+    skipComic,
+    limitComic,
+    setSearchComic,
+    setLimitComic,
+    setSkipComic,
+  } = props;
+  //  other props
+  const { text, count, type } = props;
 
-  const { text, count } = props;
-  const handleSearch1Change = (event) => setSearch1(event.target.value);
-  const handleLimit1Change = (event) => setLimit1(event.target.value);
-  const handleSkip1Change = (event) => setSkip1(event.target.value);
+  const handleSearchCharacterChange = (event) =>
+    setSearchCharacter(event.target.value);
+  const handleLimitCharacterChange = (event) =>
+    setLimitCharacter(event.target.value);
+  const handleSkipCharacterChange = (event) =>
+    setSkipCharacter(event.target.value);
 
-  const handleSearch2Change = (event) => setSearch2(event.target.value);
-  const handleLimit2Change = (event) => setLimit2(event.target.value);
-  const handleSkip2Change = (event) => setSkip2(event.target.value);
+  const handleSearchComicChange = (event) => setSearchComic(event.target.value);
+  const handleLimitComicChange = (event) => setLimitComic(event.target.value);
+  const handleSkipComicChange = (event) => setSkipComic(event.target.value);
 
   let countPage;
-  if (props.for === "Characters") {
-    countPage = count / limit1;
+  if (type === "Characters") {
+    countPage = count / limitCharacter;
   }
-  if (props.for === "Comics") {
-    countPage = count / limit2;
+  if (type === "Comics") {
+    countPage = count / limitComic;
   }
   countPage = countPage.toFixed(0);
   return (
     <div className="Pagination">
-      {props.for === "Characters" ? (
+      {type === "Characters" ? (
         <div>
           <div>
             <label>{text} : </label>
-            <input type="text" value={search1} onChange={handleSearch1Change} />
+            <input
+              type="text"
+              value={searchCharacter}
+              onChange={handleSearchCharacterChange}
+            />
           </div>
           <div>
             <label>Page : </label>
             <input
               type="number"
-              value={skip1}
-              onChange={handleSkip1Change}
+              value={skipCharacter}
+              onChange={handleSkipCharacterChange}
               min="0"
             />
           </div>
@@ -42,8 +64,8 @@ const Pagination = (props) => {
             <label>Limit : </label>
             <input
               type="number"
-              value={limit1}
-              onChange={handleLimit1Change}
+              value={limitCharacter}
+              onChange={handleLimitCharacterChange}
               min="1"
               max="100"
             />
@@ -56,18 +78,22 @@ const Pagination = (props) => {
         ""
       )}
 
-      {props.for === "Comics" ? (
+      {type === "Comics" ? (
         <div>
           <div>
             <label>{text} : </label>
-            <input type="text" value={search2} onChange={handleSearch2Change} />
+            <input
+              type="text"
+              value={searchComic}
+              onChange={handleSearchComicChange}
+            />
           </div>
           <div>
             <label>Page : </label>
             <input
               type="number"
-              value={skip2}
-              onChange={handleSkip2Change}
+              value={skipComic}
+              onChange={handleSkipComicChange}
               min="0"
             />
           </div>
@@ -75,8 +101,8 @@ const Pagination = (props) => {
             <label>Limit : </label>
             <input
               type="number"
-              value={limit2}
-              onChange={handleLimit2Change}
+              value={limitComic}
+              onChange={handleLimitComicChange}
               min="1"
               max="100"
             />

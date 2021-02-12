@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comic = (props) => {
-  const { src, title, description, iconOnClick } = props;
+  const { src, title, description, iconOnClick, checkPictureMissing } = props;
 
-  const regex = /available/;
-  let pictureMissing = regex.test(src);
+  let pictureMissing = checkPictureMissing(src);
 
   return (
     <div className="Comic scale-up-hor-left">

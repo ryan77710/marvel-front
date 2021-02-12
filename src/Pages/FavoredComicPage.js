@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 import IsLoading from "../Components/IsLoading";
 import Comic from "../Components/Comic";
-import { useHistory } from "react-router-dom";
-const FavoredComicPage = ({ authToken, FavoredDeleteComicClick }) => {
+import axios from "axios";
+
+const FavoredComicPage = (props) => {
+  const { authToken, favoredDeleteComicClick, checkPictureMissing } = props;
   let history = useHistory();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      console.log(authToken);
       const response = await axios.get(
         `http://localhost:3100/user-read/${authToken}`
       );
@@ -26,14 +27,14 @@ const FavoredComicPage = ({ authToken, FavoredDeleteComicClick }) => {
       ) : (
         <div className="ComicPage">
           <div>
-            {data.favoredComic.map((comic, index) => {
-              // const src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
+            {data.favoredComics.map((comic, index) => {
               return (
                 <Comic
                   iconOnClick={() => {
-                    FavoredDeleteComicClick(comic.id, authToken, comic.name);
+                    favoredDeleteComicClick(comic.id, authToken, comic.name);
                     history.go(0);
                   }}
+                  checkPictureMissing={checkPictureMissing}
                   src={comic.src}
                   key={index}
                   title={comic.title}

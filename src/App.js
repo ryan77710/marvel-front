@@ -1,24 +1,34 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import SignUpPage from "./Pages/SignUpPage";
+import LoginPage from "./Pages/LoginPage";
+import ComicPage from "./Pages/ComicPage";
+import CharacterPage from "./Pages/CharacterPage";
+import CharacterDetailPage from "./Pages/CharacterDetailPage";
+import FavoredCharacterPage from "./Pages/FavoredCharacterPage";
+import FavoredPage from "./Pages/FavoredPage";
+import FavoredComicPage from "./Pages/FavoredComicPage";
+
 import Header from "./Components/Header";
-import CharacterPage from "./Page/CharacterPage";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import PageNotFound from "./Components/PageNotFound";
-import SignUpPage from "./Page/SignUpPage";
-import LoginPage from "./Page/LoginPage";
-import ComicPage from "./Page/ComicPage";
-import CharacterDetailPage from "./Page/CharacterDétailPage";
+
 import Cookies from "js-cookie";
 import axios from "axios";
-import FavoredComicPage from "./Page/FavoredComicPage";
-import FavoredCharacterPage from "./Page/FavoredCharacterPage";
-import FavoredPage from "./Page/FavoredPage";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 library.add(faStar);
+
 function App() {
   const [authToken, setAuthToken] = useState(Cookies.get("Token") || null);
   const [userData, setUserData] = useState();
+
+  const checkPictureMissing = (src) => {
+    const regex = /available/;
+    let pictureMissing = regex.test(src);
+    return pictureMissing;
+  };
 
   const userLogin = (token) => {
     setAuthToken(token);
@@ -26,7 +36,7 @@ function App() {
   };
   useEffect(() => {
     if (authToken !== null) {
-      const fetchdata = async () => {
+      const fetchData = async () => {
         try {
           const response = await axios.get(
             `http://localhost:3100/user-read/${authToken}`
@@ -36,11 +46,10 @@ function App() {
           alert("Une erreur est survenue");
         }
       };
-      fetchdata();
+      fetchData();
     }
   }, [authToken]);
-  // function add favored for CharacterPage and Poster (click slowly on it else bug)
-  const FavoredAddCharacterClick = async (
+  const favoredAddCharacterClick = async (
     id,
     token,
     name,
@@ -61,10 +70,10 @@ function App() {
       }
     } else alert("Authentifiez-vous !");
   };
-  const FavoredDeleteCharacterClick = async (id, token, name) => {
+
+  const favoredDeleteCharacterClick = async (id, token, name) => {
     if (token) {
       try {
-        // console.log({ id, token, name });
         const response = await axios.get(
           `http://localhost:3100/Character-favored-delete?id=${id}&token=${token}&name=${name}`
         );
@@ -75,7 +84,7 @@ function App() {
     } else alert("Authentifiez-vous !");
   };
 
-  const FavoredAddComicClick = async (
+  const favoredAddComicClick = async (
     id,
     token,
     name,
@@ -103,10 +112,9 @@ function App() {
       }
     } else alert("Authentifiez-vous !");
   };
-  const FavoredDeleteComicClick = async (id, token, name) => {
+  const favoredDeleteComicClick = async (id, token, name) => {
     if (token) {
       try {
-        // console.log({ id, token, name });
         const response = await axios.get(
           `http://localhost:3100/Comic-favored-delete?id=${id}&token=${token}&name=${name}`
         );
@@ -126,47 +134,53 @@ function App() {
           userData={userData}
           setUserData={setUserData}
           setAuthToken={setAuthToken}
-        ></Header>
+        />
         <Switch>
           <Route exact path="/login">
-            <LoginPage authToken={authToken} userLogin={userLogin}></LoginPage>
+            <LoginPage authToken={authToken} userLogin={userLogin} />
           </Route>
           <Route exact path="/signup">
             <SignUpPage
               authToken={authToken}
+              userLogin={userLogin}
               setAuthToken={setAuthToken}
-            ></SignUpPage>
+            />
           </Route>
           <Route exact path="/Character-detail-page/:id">
             <CharacterDetailPage
               user={userData ? userData.username : ""}
-            ></CharacterDetailPage>
+              checkPictureMissing={checkPictureMissing}
+            />
           </Route>
           <Route exact path="/favoredComic">
             <FavoredComicPage
               authToken={authToken}
-              FavoredDeleteComicClick={FavoredDeleteComicClick}
-            ></FavoredComicPage>
+              checkPictureMissing={checkPictureMissing}
+              favoredDeleteComicClick={favoredDeleteComicClick}
+            />
           </Route>
           <Route exact path="/favoredCharacter">
             <FavoredCharacterPage
               authToken={authToken}
-              FavoredDeleteCharacterClick={FavoredDeleteCharacterClick}
-            ></FavoredCharacterPage>
+              checkPictureMissing={checkPictureMissing}
+              favoredDeleteCharacterClick={favoredDeleteCharacterClick}
+            />
           </Route>
           <Route exact path="/favored">
-            <FavoredPage authToken={authToken}></FavoredPage>
+            <FavoredPage authToken={authToken} />
           </Route>
           <Route exact path="/comic">
             <ComicPage
               authToken={authToken}
-              FavoredAddComicClick={FavoredAddComicClick}
-            ></ComicPage>
+              favoredAddComicClick={favoredAddComicClick}
+              checkPictureMissing={checkPictureMissing}
+            />
           </Route>
           <Route exact path="/">
             <CharacterPage
               authToken={authToken}
-              FavoredAddCharacterClick={FavoredAddCharacterClick}
+              favoredAddCharacterClick={favoredAddCharacterClick}
+              checkPictureMissing={checkPictureMissing}
             />
           </Route>
           <Route path="*">
