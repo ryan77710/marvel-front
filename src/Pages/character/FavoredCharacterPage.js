@@ -13,7 +13,7 @@ const FavoredCharacterPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com//user-read/${authToken}`
+        `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
       );
       setData(response.data);
       setIsLoading(false);
