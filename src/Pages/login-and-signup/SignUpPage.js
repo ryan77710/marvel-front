@@ -30,7 +30,7 @@ const SignUpPage = ({ userLogin }) => {
 
       try {
         const response = await axios.post(
-          "https://ryan-martel-backend.herokuapp.com/user/signup",
+          `${process.env.REACT_APP_API_URL}user/signup`,
           formData,
           {
             headers: {

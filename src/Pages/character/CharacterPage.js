@@ -8,8 +8,10 @@ import axios from "axios";
 
 const Character = (props) => {
   const { authToken, favoredAddCharacterClick, checkPictureMissing } = props;
+
   //delay for animation delay of Poster
   let delay = 0;
+
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +22,9 @@ const Character = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/characters?name=${searchCharacter}&limit=${limitCharacter}&skip=${
+        `${
+          process.env.REACT_APP_API_URL
+        }characters?name=${searchCharacter}&limit=${limitCharacter}&skip=${
           skipCharacter * 100
         }`
       );

@@ -16,7 +16,9 @@ const ComicPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/comics?limit=${limitComic}&title=${searchComic}&skip=${
+        `${
+          process.env.REACT_APP_API_URL
+        }comics?limit=${limitComic}&title=${searchComic}&skip=${
           skipComic * 100
         }`
       );

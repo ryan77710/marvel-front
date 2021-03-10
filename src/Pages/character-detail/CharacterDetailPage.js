@@ -16,7 +16,7 @@ const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/character-comic/${id}`
+        `${process.env.REACT_APP_API_URL}character-comic/${id}`
       );
       setData(response.data);
       setIsLoading(false);

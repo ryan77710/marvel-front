@@ -22,7 +22,7 @@ library.add(faStar);
 
 function App() {
   const [authToken, setAuthToken] = useState(Cookies.get("Token") || null);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   const checkPictureMissing = (src) => {
     const regex = /available/;
@@ -39,7 +39,7 @@ function App() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
+            `${process.env.REACT_APP_API_URL}user-read/${authToken}`
           );
           setUserData(response.data);
         } catch (error) {
@@ -60,7 +60,9 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `https://ryan-martel-backend.herokuapp.com/character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
+          `${
+            process.env.REACT_APP_API_URL
+          }character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
             description ? description : "Non autorisé"
           }&extension=${gif}`
         );
@@ -75,7 +77,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `https://ryan-martel-backend.herokuapp.com/character-favored-delete?id=${id}&token=${token}&name=${name}`
+          `${process.env.REACT_APP_API_URL}character-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {
@@ -103,7 +105,7 @@ function App() {
           extension: gif,
         };
         const response = await axios.post(
-          "https://ryan-martel-backend.herokuapp.com/comic-favored",
+          `${process.env.REACT_APP_API_URL}comic-favored`,
           data
         );
         alert(response.data.message);
@@ -116,7 +118,7 @@ function App() {
     if (token) {
       try {
         const response = await axios.get(
-          `https://ryan-martel-backend.herokuapp.com/comic-favored-delete?id=${id}&token=${token}&name=${name}`
+          `${process.env.REACT_APP_API_URL}comic-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         alert(response.data.message);
       } catch (error) {
@@ -128,6 +130,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        {/* <Switch> */}
         <Header
           authToken={authToken}
           userLogin={userLogin}

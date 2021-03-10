@@ -13,7 +13,7 @@ const FavoredCharacterPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
+        `${process.env.REACT_APP_API_URL}user-read/${authToken}`
       );
       setData(response.data);
       setIsLoading(false);
@@ -26,28 +26,30 @@ const FavoredCharacterPage = (props) => {
         <IsLoading></IsLoading>
       ) : (
         <div className="CharacterPage">
-          {data.favoredCharacters.map((poster, index) => {
-            return (
-              <Poster
-                checkPictureMissing={checkPictureMissing}
-                iconOnClick={() => {
-                  favoredDeleteCharacterClick(
-                    poster.id,
-                    authToken,
-                    poster.name
-                  );
-                  history.go(0);
-                }}
-                src={poster.src}
-                token={authToken}
-                key={poster._id}
-                id={poster._id}
-                name={poster.name}
-                description={poster.description}
-                gif={poster.extension}
-              ></Poster>
-            );
-          })}
+          {data
+            ? data.favoredCharacters.map((poster, index) => {
+                return (
+                  <Poster
+                    checkPictureMissing={checkPictureMissing}
+                    iconOnClick={() => {
+                      favoredDeleteCharacterClick(
+                        poster.id,
+                        authToken,
+                        poster.name
+                      );
+                      history.go(0);
+                    }}
+                    src={poster.src}
+                    token={authToken}
+                    key={poster._id}
+                    id={poster._id}
+                    name={poster.name}
+                    description={poster.description}
+                    gif={poster.extension}
+                  ></Poster>
+                );
+              })
+            : ""}
         </div>
       )}
     </>

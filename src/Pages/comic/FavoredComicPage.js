@@ -12,13 +12,15 @@ const FavoredComicPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://ryan-martel-backend.herokuapp.com/user-read/${authToken}`
+        `${process.env.REACT_APP_API_URL}user-read/${authToken}`
       );
+
       setData(response.data);
+
       setIsLoading(false);
     };
     fetchData();
-  }, [authToken]);
+  }, [authToken, data]);
 
   return (
     <>
@@ -27,22 +29,32 @@ const FavoredComicPage = (props) => {
       ) : (
         <div className="ComicPage">
           <div>
-            {data.favoredComics.map((comic, index) => {
-              return (
-                <Comic
-                  iconOnClick={() => {
-                    favoredDeleteComicClick(comic.id, authToken, comic.name);
-                    history.go(0);
-                  }}
-                  checkPictureMissing={checkPictureMissing}
-                  src={comic.src}
-                  key={index}
-                  title={comic.title}
-                  description={comic.description}
-                  gif={comic.extension}
-                ></Comic>
-              );
-            })}
+            {data ? (
+              <>
+                {data.favoredComics.map((comic, index) => {
+                  return (
+                    <Comic
+                      iconOnClick={() => {
+                        favoredDeleteComicClick(
+                          comic.id,
+                          authToken,
+                          comic.name
+                        );
+                        history.go(0);
+                      }}
+                      checkPictureMissing={checkPictureMissing}
+                      src={comic.src}
+                      key={index}
+                      title={comic.title}
+                      description={comic.description}
+                      gif={comic.extension}
+                    ></Comic>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       )}

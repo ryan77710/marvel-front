@@ -20,14 +20,16 @@ const Header = (props) => {
         alt="logo-marvel"
       />
       <div>
-        <img
-          src={
-            userData
-              ? userData.picture.url
-              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjFpg0P1tvjnU8sGPcwqyTueZ65utmvegb5w&usqp=CAU"
-          }
-          alt={userData ? userData.username : "joker-anomyme"}
-        />
+        {userData &&
+        userData.picture !== undefined &&
+        userData.picture !== null ? (
+          <img src={userData.picture.url} alt="user" />
+        ) : (
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjFpg0P1tvjnU8sGPcwqyTueZ65utmvegb5w&usqp=CAU"
+            alt="anonyme"
+          />
+        )}
         <p>
           Bienvenue <b> {userData ? userData.username : "Inconnue"}</b>
           <br /> Accréditation:{" "}
@@ -50,7 +52,7 @@ const Header = (props) => {
         </button>
       )}
       <button className="cyan" onClick={() => history.push("favored")}>
-        Favorie
+        Favori
       </button>
     </header>
   );

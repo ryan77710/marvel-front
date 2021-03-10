@@ -16,7 +16,7 @@ const LoginPage = ({ userLogin }) => {
     try {
       const data = { email: email, password: password };
       const response = await axios.post(
-        "https://ryan-martel-backend.herokuapp.com/user/login",
+        `${process.env.REACT_APP_API_URL}user/login`,
         data
       );
       const token = response.data.token;
