@@ -255,9 +255,70 @@
   right: 5px;
   cursor: pointer;
 }
+.CharacterPage .yellow {
+  color: yellow;
+}
 
 .CharacterPage .Poster span {
   position: absolute;
   top: 0px;
   color: red;
+}
+.CharacterPage input[type="checkbox"] {
+  width: 60px;
+  -webkit-appearance: none;
+  right: -20px;
+  height: 20px;
+  outline: none;
+  border-radius: 20px;
+}
+.CharacterPage input[type="checkbox"]:before {
+  content: "";
+  top: 0px;
+  position: absolute;
+  height: 20px;
+  border-radius: 20px;
+  width: 40px;
+  background: linear-gradient(0deg, #333, #000);
+  box-shadow: 0 0 0 1px #232323;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+
+.CharacterPage .notChecked:before {
+  left: 0px;
+}
+.CharacterPage .checked:before {
+  left: 20px;
+}
+.CharacterPage input[type="checkbox"]:after {
+  content: "";
+  top: calc(50% - 1px);
+  position: absolute;
+  height: 2px;
+  border-radius: 20px;
+  width: 2px;
+  border-radius: 50%;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+.CharacterPage .notChecked:after {
+  left: 30px;
+  background: linear-gradient(0deg, #6b6b6b, #000);
+}
+.CharacterPage .notChecked {
+  background: linear-gradient(0deg, #333, #000);
+  box-shadow: 0 0 0 1px #353535, 0 0 0 2px #3e3e3e, inset 0 0 10px rgba(0, 0, 1),
+    0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.CharacterPage .checked {
+  background: linear-gradient(0deg, #6dd1ff, #20b7ff);
+  box-shadow: 0 0 1px #6dd1ff, 0 0 0 2px #353535, 0 0 0 3px #3e3e3e,
+    inset 0 0 10px rgba(0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.CharacterPage .checked:after {
+  left: 50px;
+  background: #63cdff;
+  box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
 }

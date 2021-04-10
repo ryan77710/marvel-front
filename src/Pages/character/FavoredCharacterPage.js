@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Poster from "../../Components/Poster";
 import IsLoading from "../../Components/IsLoading";
 import axios from "axios";
 
 const FavoredCharacterPage = (props) => {
-  const { authToken, favoredDeleteCharacterClick, checkPictureMissing } = props;
-  let history = useHistory();
+  const { authToken, checkPictureMissing } = props;
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,11 +13,24 @@ const FavoredCharacterPage = (props) => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}user-read/${authToken}`
       );
-      setData(response.data);
+      setData(response.data.favoredCharacters);
       setIsLoading(false);
     };
     fetchData();
   }, [authToken]);
+  const favoredDeleteCharacterClick = async (id, token, name) => {
+    if (token) {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}character-favored-delete?id=${id}&token=${token}&name=${name}`
+        );
+
+        setData(response.data.favoredCharacters);
+      } catch (error) {
+        alert("Une erreur est survenue");
+      }
+    } else alert("Authentifiez-vous !");
+  };
   return (
     <>
       {isLoading ? (
@@ -27,26 +38,26 @@ const FavoredCharacterPage = (props) => {
       ) : (
         <div className="CharacterPage">
           {data
-            ? data.favoredCharacters.map((poster, index) => {
+            ? data.map((poster, index) => {
                 return (
                   <Poster
                     checkPictureMissing={checkPictureMissing}
+                    favored={poster.favored}
                     iconOnClick={() => {
                       favoredDeleteCharacterClick(
                         poster.id,
                         authToken,
                         poster.name
                       );
-                      history.go(0);
                     }}
                     src={poster.src}
                     token={authToken}
-                    key={poster._id}
+                    key={poster.id}
                     id={poster._id}
                     name={poster.name}
                     description={poster.description}
                     gif={poster.extension}
-                  ></Poster>
+                  />
                 );
               })
             : ""}

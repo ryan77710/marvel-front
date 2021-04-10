@@ -1,8 +1,10 @@
+import PaginationPage from "./PaginationPage";
+
 const Pagination = (props) => {
   // props for page CharacterPage
   const {
     searchCharacter,
-    skipCharacter,
+
     limitCharacter,
     setSearchCharacter,
     setLimitCharacter,
@@ -11,7 +13,7 @@ const Pagination = (props) => {
   // props for ComicPage
   const {
     searchComic,
-    skipComic,
+
     limitComic,
     setSearchComic,
     setLimitComic,
@@ -24,12 +26,9 @@ const Pagination = (props) => {
     setSearchCharacter(event.target.value);
   const handleLimitCharacterChange = (event) =>
     setLimitCharacter(event.target.value);
-  const handleSkipCharacterChange = (event) =>
-    setSkipCharacter(event.target.value);
 
   const handleSearchComicChange = (event) => setSearchComic(event.target.value);
   const handleLimitComicChange = (event) => setLimitComic(event.target.value);
-  const handleSkipComicChange = (event) => setSkipComic(event.target.value);
 
   let countPage;
   if (type === "Characters") {
@@ -51,15 +50,7 @@ const Pagination = (props) => {
               onChange={handleSearchCharacterChange}
             />
           </div>
-          <div>
-            <label>Page : </label>
-            <input
-              type="number"
-              value={skipCharacter}
-              onChange={handleSkipCharacterChange}
-              min="0"
-            />
-          </div>
+
           <div title="Nombre de fiche par page ">
             <label>Limit : </label>
             <input
@@ -88,15 +79,7 @@ const Pagination = (props) => {
               onChange={handleSearchComicChange}
             />
           </div>
-          <div>
-            <label>Page : </label>
-            <input
-              type="number"
-              value={skipComic}
-              onChange={handleSkipComicChange}
-              min="0"
-            />
-          </div>
+
           <div title="Nombre de fiche par page ">
             <label>Limit : </label>
             <input
@@ -114,6 +97,12 @@ const Pagination = (props) => {
       ) : (
         ""
       )}
+      <PaginationPage
+        type={type}
+        setSkipComic={setSkipComic}
+        setSkipCharacter={setSkipCharacter}
+        countPage={countPage}
+      />
     </div>
   );
 };

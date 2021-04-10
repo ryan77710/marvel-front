@@ -1,18 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CheckBox from "./CheckBox";
 
 const Comic = (props) => {
-  const { src, title, description, iconOnClick, checkPictureMissing } = props;
+  const {
+    src,
+    title,
+    description,
+    iconOnClick,
+    checkPictureMissing,
+    favored,
+  } = props;
 
   let pictureMissing = checkPictureMissing(src);
 
   return (
     <div className="Comic scale-up-hor-left">
       <p>
-        <FontAwesomeIcon
+        <CheckBox
           className="favored"
+          iconOnClick={iconOnClick}
+          favored={favored}
+        />
+        {/* <FontAwesomeIcon
+          className={`favored ${favored ? "yellow" : ""}`}
           icon="star"
           onClick={iconOnClick}
-        />
+        /> */}
         {!description || description === "Non autorisé" ? (
           <span>Classified</span>
         ) : (

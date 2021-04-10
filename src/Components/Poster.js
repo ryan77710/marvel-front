@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CheckBox from "./CheckBox";
 
 const Poster = (props) => {
   let history = useHistory();
@@ -12,6 +13,7 @@ const Poster = (props) => {
     iconOnClick,
     delay,
     checkPictureMissing,
+    favored,
   } = props;
 
   let pictureMissing = checkPictureMissing(src);
@@ -42,14 +44,12 @@ const Poster = (props) => {
         </div>
       </div>
       <p>{name}</p>
-
-      <FontAwesomeIcon
+      <CheckBox
         className="favored"
-        icon="star"
-        onClick={iconOnClick}
-        title="click slowly for avoid bug
-        "
+        iconOnClick={iconOnClick}
+        favored={favored}
       />
+
       {description && description !== "Non autorisé" ? (
         <span title="Déclassified" className="déclassified">
           D

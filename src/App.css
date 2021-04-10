@@ -12,6 +12,7 @@
   display: none;
 }
 /* loading page and unfined page ,login ,signup */
+
 .IsLoading,
 .PageNotFound,
 .LoginPage,
@@ -23,7 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(61, 136, 201);
+  color: #3d88c9;
   background-repeat: no-repeat;
   background-size: 100% auto;
 }

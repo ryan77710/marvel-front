@@ -50,10 +50,69 @@
 .ComicPage p {
   color: aliceblue;
   margin-bottom: 10px;
+  position: relative;
 }
 .ComicPage p .favored {
   margin-right: 20px;
   cursor: pointer;
+}
+
+.ComicPage input[type="checkbox"] {
+  width: 60px;
+  -webkit-appearance: none;
+  height: 20px;
+  outline: none;
+  border-radius: 20px;
+}
+.ComicPage input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  border-radius: 20px;
+  width: 40px;
+  background: linear-gradient(0deg, #333, #000);
+  box-shadow: 0 0 0 1px #232323;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+
+.ComicPage .notChecked:before {
+  top: 3px;
+  left: 4px;
+}
+.ComicPage .checked:before {
+  left: 24px;
+}
+.ComicPage input[type="checkbox"]:after {
+  content: "";
+  top: calc(50% - 3px);
+  position: absolute;
+  height: 2px;
+  border-radius: 20px;
+  width: 2px;
+  border-radius: 50%;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+.ComicPage .notChecked:after {
+  left: 34px;
+  background: linear-gradient(0deg, #6b6b6b, #000);
+}
+.ComicPage .notChecked {
+  background: linear-gradient(0deg, #333, #000);
+  box-shadow: 0 0 0 1px #353535, 0 0 0 2px #3e3e3e, inset 0 0 10px rgba(0, 0, 1),
+    0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.ComicPage .checked {
+  background: linear-gradient(0deg, #6dd1ff, #20b7ff);
+  box-shadow: 0 0 1px #6dd1ff, 0 0 0 2px #353535, 0 0 0 3px #3e3e3e,
+    inset 0 0 10px rgba(0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.ComicPage .checked:after {
+  left: 50px;
+  background: #63cdff;
+  box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
 }
 
 .ComicPage p span {

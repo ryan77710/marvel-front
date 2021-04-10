@@ -2,11 +2,12 @@
 .Pagination {
   width: 100vw;
   color: red;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .Pagination > div {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .Pagination > div > div {
   margin-right: 20px;
@@ -37,4 +38,58 @@
 }
 .Pagination P > span:nth-child(2) {
   color: rgb(46, 91, 129);
+}
+/* PaginationPage ----------------------------------------------------------------------------------------------*/
+.PaginationPage {
+  font-size: 20px;
+  margin-top: 10px;
+  height: 100px;
+}
+.PaginationPage .break-me {
+  border: none;
+}
+.PaginationPage .pagination {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px;
+  justify-content: center;
+  width: 100%;
+}
+.PaginationPage .pagination > li:not(.active) {
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 3px;
+  color: #00ffff;
+  /* color: #e61515; */
+  cursor: pointer;
+}
+.PaginationPage .pagination > li a {
+  outline: none;
+  border: none;
+}
+.PaginationPage .active {
+  color: black;
+  box-sizing: border-box;
+  background: linear-gradient(0.25turn, black, #00ffff);
+  padding: 8px;
+  border-radius: 15px;
+  font-size: 22px;
+  transition: 1.5s;
+}
+.PaginationPage .next,
+.PaginationPage .previous {
+  box-sizing: border-box;
+  padding: 5px;
+  text-decoration: underline;
+  text-decoration-color: rgb(255, 255, 255);
+}
+.PaginationPage .next {
+  margin-left: 15px;
+}
+.PaginationPage .previous {
+  margin-right: 15px;
 }

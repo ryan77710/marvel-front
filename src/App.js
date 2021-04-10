@@ -49,83 +49,6 @@ function App() {
       fetchData();
     }
   }, [authToken]);
-  const favoredAddCharacterClick = async (
-    id,
-    token,
-    name,
-    src,
-    description,
-    gif
-  ) => {
-    if (token) {
-      try {
-        const response = await axios.get(
-          `${
-            process.env.REACT_APP_API_URL
-          }character-favored?id=${id}&token=${token}&name=${name}&src=${src}&description=${
-            description ? description : "Non autorisé"
-          }&extension=${gif}`
-        );
-        alert(response.data.message);
-      } catch (error) {
-        alert("Une erreur est survenue");
-      }
-    } else alert("Authentifiez-vous !");
-  };
-
-  const favoredDeleteCharacterClick = async (id, token, name) => {
-    if (token) {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}character-favored-delete?id=${id}&token=${token}&name=${name}`
-        );
-        alert(response.data.message);
-      } catch (error) {
-        alert("Une erreur est survenue");
-      }
-    } else alert("Authentifiez-vous !");
-  };
-
-  const favoredAddComicClick = async (
-    id,
-    token,
-    name,
-    src,
-    description,
-    gif
-  ) => {
-    if (token) {
-      try {
-        const data = {
-          src: src,
-          description: description ? description : "Non autorisé",
-          name: name,
-          id: id,
-          token: token,
-          extension: gif,
-        };
-        const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}comic-favored`,
-          data
-        );
-        alert(response.data.message);
-      } catch (error) {
-        alert("Une erreur est survenue");
-      }
-    } else alert("Authentifiez-vous !");
-  };
-  const favoredDeleteComicClick = async (id, token, name) => {
-    if (token) {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}comic-favored-delete?id=${id}&token=${token}&name=${name}`
-        );
-        alert(response.data.message);
-      } catch (error) {
-        alert("Une erreur est survenue");
-      }
-    } else alert("Authentifiez-vous !");
-  };
 
   return (
     <div className="App">
@@ -159,14 +82,12 @@ function App() {
             <FavoredComicPage
               authToken={authToken}
               checkPictureMissing={checkPictureMissing}
-              favoredDeleteComicClick={favoredDeleteComicClick}
             />
           </Route>
           <Route exact path="/favoredCharacter">
             <FavoredCharacterPage
               authToken={authToken}
               checkPictureMissing={checkPictureMissing}
-              favoredDeleteCharacterClick={favoredDeleteCharacterClick}
             />
           </Route>
           <Route exact path="/favored">
@@ -175,14 +96,12 @@ function App() {
           <Route exact path="/comic">
             <ComicPage
               authToken={authToken}
-              favoredAddComicClick={favoredAddComicClick}
               checkPictureMissing={checkPictureMissing}
             />
           </Route>
           <Route exact path="/">
             <CharacterPage
               authToken={authToken}
-              favoredAddCharacterClick={favoredAddCharacterClick}
               checkPictureMissing={checkPictureMissing}
             />
           </Route>
