@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckBox from "./CheckBox";
 
 const Comic = (props) => {
@@ -21,11 +20,7 @@ const Comic = (props) => {
           iconOnClick={iconOnClick}
           favored={favored}
         />
-        {/* <FontAwesomeIcon
-          className={`favored ${favored ? "yellow" : ""}`}
-          icon="star"
-          onClick={iconOnClick}
-        /> */}
+
         {!description || description === "Non autorisé" ? (
           <span>Classified</span>
         ) : (

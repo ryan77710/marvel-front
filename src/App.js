@@ -53,7 +53,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Switch> */}
         <Header
           authToken={authToken}
           userLogin={userLogin}
@@ -71,6 +70,9 @@ function App() {
               userLogin={userLogin}
               setAuthToken={setAuthToken}
             />
+          </Route>
+          <Route exact path="/favored">
+            <FavoredPage authToken={authToken} />
           </Route>
           <Route exact path="/character-detail-page/:id">
             <CharacterDetailPage
@@ -90,9 +92,9 @@ function App() {
               checkPictureMissing={checkPictureMissing}
             />
           </Route>
-          <Route exact path="/favored">
+          {/* <Route exact path="/favored">
             <FavoredPage authToken={authToken} />
-          </Route>
+          </Route> */}
           <Route exact path="/comic">
             <ComicPage
               authToken={authToken}

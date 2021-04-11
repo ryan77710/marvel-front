@@ -1,38 +1,21 @@
-import { useState, useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import IsLoading from "../../Components/IsLoading";
 import pictureFavoredPage from "../../pictureFavoredPage.json";
+import Caroussel from "../../Components/Caroussel";
 
 const FavoredPage = ({ authToken }) => {
   let history = useHistory();
-  const [pictureLeft, setPictureLeft] = useState("");
-  const [pictureRight, setPictureRight] = useState("");
-
-  useEffect(() => {
-    const randomPicture = () => {
-      let pictureLeft =
-        pictureFavoredPage[
-          Math.floor(Math.random() * pictureFavoredPage.length)
-        ];
-      let pictureRight =
-        pictureFavoredPage[
-          Math.floor(Math.random() * pictureFavoredPage.length)
-        ];
-      setPictureLeft(pictureLeft);
-      setPictureRight(pictureRight);
-    };
-    setInterval(() => {
-      randomPicture();
-    }, 3500);
-  }, []);
 
   return (
     <>
       {authToken ? (
         <>
-          {pictureLeft && pictureRight ? (
+          {authToken && authToken ? (
             <div className="FavoredPage">
-              <img src={pictureLeft} alt="wallpaper" />
+              <div className="carousselContainer">
+                <Caroussel pictures={pictureFavoredPage} />
+              </div>
+
               <div>
                 <button onClick={() => history.push("/favoredComic")}>
                   Comics
@@ -41,12 +24,9 @@ const FavoredPage = ({ authToken }) => {
                   Personnage
                 </button>
               </div>
-
-              <img
-                src={pictureRight}
-                className="kenburns-top-loading "
-                alt="wallpaper"
-              />
+              <div className="carousselContainer">
+                <Caroussel pictures={pictureFavoredPage} index={20} />
+              </div>
             </div>
           ) : (
             <IsLoading />

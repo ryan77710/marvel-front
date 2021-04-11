@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import IsLoading from "../../Components/IsLoading";
 import ShowComic from "../../Components/ShowComic";
 import pictureDetailPage from "../../pictureDetailPage.json";
+import Caroussel from "../../Components/Caroussel";
 
 const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   const { id } = useParams();
@@ -11,7 +12,6 @@ const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [comicData, setComicData] = useState();
   const [showComic, setShowComic] = useState(false);
-  const [randomPicture, setRandomPicture] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,17 +23,6 @@ const CharacterDetailPage = ({ checkPictureMissing, user }) => {
     };
     fetchData();
   }, [id]);
-
-  useEffect(() => {
-    const randomPicture = () => {
-      let picture =
-        pictureDetailPage[Math.floor(Math.random() * pictureDetailPage.length)];
-      setRandomPicture(picture);
-    };
-    setInterval(() => {
-      randomPicture();
-    }, 3500);
-  }, []);
 
   // modal appers
   const handleComicClick = (comic) => {
@@ -94,7 +83,9 @@ const CharacterDetailPage = ({ checkPictureMissing, user }) => {
                 );
               })}
             </div>
-            <img src={randomPicture} alt="comic" />
+            <div>
+              <Caroussel pictures={pictureDetailPage} />
+            </div>
           </div>
           {showComic ? (
             <ShowComic

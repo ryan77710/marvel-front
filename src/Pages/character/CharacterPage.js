@@ -49,7 +49,6 @@ const Character = (props) => {
   ) => {
     if (token) {
       try {
-        console.log("on click");
         const response = await axios.get(
           `${
             process.env.REACT_APP_API_URL
@@ -66,7 +65,6 @@ const Character = (props) => {
           return "";
         });
         setPosterData(tab);
-        console.log(response.data);
       } catch (error) {
         alert("Une erreur est survenue");
       }

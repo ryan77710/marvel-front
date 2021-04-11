@@ -61,7 +61,6 @@ const ComicPage = (props) => {
           return "";
         });
         setComics(tab);
-        console.log(response.data);
       } catch (error) {
         alert("Une erreur est survenue");
       }

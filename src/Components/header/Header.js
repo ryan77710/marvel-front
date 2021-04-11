@@ -51,7 +51,7 @@ const Header = (props) => {
           Se déconnecter
         </button>
       )}
-      <button className="cyan" onClick={() => history.push("favored")}>
+      <button className="cyan" onClick={() => history.push("/favored")}>
         Favori
       </button>
     </header>

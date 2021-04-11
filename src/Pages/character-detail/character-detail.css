@@ -34,7 +34,7 @@
   font-size: 20px;
 }
 .CharacterDetailPage > div:nth-child(2) {
-  width: 1800px;
+  width: 800px;
   display: flex;
 }
 .CharacterDetailPage > div:nth-child(2) > div {
@@ -67,10 +67,9 @@
   cursor: pointer;
 }
 
-.CharacterDetailPage > div:nth-child(2) > img {
-  width: 50%;
-  height: 100%;
-  object-fit: contain;
+.CharacterDetailPage .alice-carousel__stage-item.__active {
+  margin-right: 150px;
+  /* transition: 2.5s; */
 }
 
 /* .CharacterDetailPage .ShowComic modal ---------------------------------------------------------------------------------------------- */

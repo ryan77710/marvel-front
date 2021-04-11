@@ -5,6 +5,7 @@
 @import "./Pages//favored-page/favored-page.css";
 @import "./Components/header/header.css";
 @import "./Components/pagination/pagination.css";
+
 * {
   box-sizing: border-box;
 }
@@ -36,4 +37,13 @@
   padding-top: 10px;
   background-color: rgb(0, 0, 0);
   min-height: 100vh;
+}
+.car {
+  border: 1px solid purple;
+  background-color: rebeccapurple;
+}
+.item {
+  /* background-color: red; */
+  min-width: 33vw;
+  height: 88.5vh;
 }
