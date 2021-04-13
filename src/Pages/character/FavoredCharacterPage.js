@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+
 import Poster from "../../Components/Poster";
 import IsLoading from "../../Components/IsLoading";
+
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const FavoredCharacterPage = (props) => {
   const { authToken, checkPictureMissing } = props;
@@ -26,10 +29,11 @@ const FavoredCharacterPage = (props) => {
         );
 
         setData(response.data.favoredCharacters);
+        toast.dark(`${name} suprimé des favories`);
       } catch (error) {
-        alert("Une erreur est survenue");
+        toast.error("Une erreur est survenue");
       }
-    } else alert("Authentifiez-vous !");
+    } else toast.error("Authentifiez-vous !");
   };
   return (
     <>

@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
+
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const Header = (props) => {
   const { authToken, setAuthToken, userData, setUserData } = props;
@@ -9,8 +11,9 @@ const Header = (props) => {
     Cookies.remove("Token");
     setAuthToken(null);
     setUserData(null);
-    alert("deconexion");
     history.push("/");
+    toast.warn("Déconecxions");
+    toast("au revoir a bientôt");
   };
   return (
     <header>

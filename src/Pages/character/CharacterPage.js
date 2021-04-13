@@ -6,6 +6,7 @@ import IsLoading from "../../Components/IsLoading";
 import Pagination from "../../Components/pagination/Pagination";
 
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Character = (props) => {
   const { authToken, checkPictureMissing } = props;
@@ -18,7 +19,7 @@ const Character = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchCharacter, setSearchCharacter] = useState("");
-  const [searchCharacterDebounced] = useDebounce(searchCharacter, 1000);
+  const [searchCharacterDebounced] = useDebounce(searchCharacter, 2000);
   const [limitCharacter, setLimitCharacter] = useState(100);
   const [skipCharacter, setSkipCharacter] = useState(0);
 
@@ -65,10 +66,11 @@ const Character = (props) => {
           return "";
         });
         setPosterData(tab);
+        toast.info(response.data.message);
       } catch (error) {
-        alert("Une erreur est survenue");
+        toast.error("Une erreur est survenue");
       }
-    } else alert("Authentifiez-vous !");
+    } else toast.error("Authentifiez-vous !");
   };
 
   return (

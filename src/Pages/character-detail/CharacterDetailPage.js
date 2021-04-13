@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import IsLoading from "../../Components/IsLoading";
 import ShowComic from "../../Components/ShowComic";
-import pictureDetailPage from "../../pictureDetailPage.json";
 import Caroussel from "../../Components/Caroussel";
+
+import pictureDetailPage from "../../pictureDetailPage.json";
 
 const CharacterDetailPage = ({ checkPictureMissing, user }) => {
   const { id } = useParams();

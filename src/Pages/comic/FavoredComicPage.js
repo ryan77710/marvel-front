@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+
 import IsLoading from "../../Components/IsLoading";
 import Comic from "../../Components/Comic";
+
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const FavoredComicPage = (props) => {
   const { authToken, checkPictureMissing } = props;
@@ -26,10 +29,11 @@ const FavoredComicPage = (props) => {
           `${process.env.REACT_APP_API_URL}comic-favored-delete?id=${id}&token=${token}&name=${name}`
         );
         setData(response.data);
+        toast.dark(`${name} suprimé des favories`);
       } catch (error) {
-        alert("Une erreur est survenue");
+        toast.error("Une erreur est survenue");
       }
-    } else alert("Authentifiez-vous !");
+    } else toast.error("Authentifiez-vous !");
   };
 
   return (

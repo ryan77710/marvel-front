@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const SignUpPage = ({ userLogin }) => {
   let history = useHistory();
@@ -20,7 +22,7 @@ const SignUpPage = ({ userLogin }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== ConfirmePassword) {
-      alert("atttention mot de passe diférent");
+      toast.error("atttention mot de passe diférent");
     } else {
       const formData = new FormData();
       formData.append("email", email);
@@ -40,8 +42,9 @@ const SignUpPage = ({ userLogin }) => {
         );
         userLogin(response.data.token);
         history.push("/");
+        toast.success("compte créé");
       } catch (error) {
-        alert("Une erreur est survenue");
+        toast.error("Une erreur est survenue");
       }
     }
   };

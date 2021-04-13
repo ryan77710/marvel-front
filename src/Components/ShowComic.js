@@ -20,7 +20,7 @@ const ShowComic = ({ data, setShowComic, setComicData, isLoading, user }) => {
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuBzStwoUGsRHFFvRMIouit-_UH2s8Ahim-Q&usqp=CAU"
                   alt="top-secret"
-                ></img>
+                />
               ) : (
                 <img src={src} alt={data.title} />
               )}

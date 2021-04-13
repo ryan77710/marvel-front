@@ -16,6 +16,7 @@ import PageNotFound from "./Components/PageNotFound";
 
 import Cookies from "js-cookie";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 library.add(faStar);
@@ -33,6 +34,8 @@ function App() {
   const userLogin = (token) => {
     setAuthToken(token);
     Cookies.set("Token", token, { expires: 7 });
+    toast.success("Connexion");
+    toast("Bienvenue");
   };
   useEffect(() => {
     if (authToken !== null) {
@@ -43,7 +46,7 @@ function App() {
           );
           setUserData(response.data);
         } catch (error) {
-          alert("Une erreur est survenue");
+          toast.error("Une erreur est survenue");
         }
       };
       fetchData();
@@ -59,6 +62,17 @@ function App() {
           userData={userData}
           setUserData={setUserData}
           setAuthToken={setAuthToken}
+        />
+        <ToastContainer
+          position="top-right"
+          autoClose={10000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
         <Switch>
           <Route exact path="/login">
@@ -92,9 +106,7 @@ function App() {
               checkPictureMissing={checkPictureMissing}
             />
           </Route>
-          {/* <Route exact path="/favored">
-            <FavoredPage authToken={authToken} />
-          </Route> */}
+
           <Route exact path="/comic">
             <ComicPage
               authToken={authToken}

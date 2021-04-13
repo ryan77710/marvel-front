@@ -5,6 +5,7 @@
 @import "./Pages//favored-page/favored-page.css";
 @import "./Components/header/header.css";
 @import "./Components/pagination/pagination.css";
+@import "react-toastify/dist/ReactToastify.css";
 
 * {
   box-sizing: border-box;

@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
+
 import IsLoading from "../../Components/IsLoading";
 import Comic from "../../Components/Comic";
 import Pagination from "../../Components/pagination/Pagination";
+
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ComicPage = (props) => {
   const { authToken, checkPictureMissing } = props;
@@ -11,6 +15,7 @@ const ComicPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchComic, setSearchComic] = useState("");
+  const [searchComicDebounced] = useDebounce(searchComic, 2000);
   const [limitComic, setLimitComic] = useState(100);
   const [skipComic, setSkipComic] = useState(0);
 
@@ -19,7 +24,7 @@ const ComicPage = (props) => {
       const response = await axios.get(
         `${
           process.env.REACT_APP_API_URL
-        }comics?limit=${limitComic}&title=${searchComic}&skip=${
+        }comics?limit=${limitComic}&title=${searchComicDebounced}&skip=${
           skipComic * 100
         }&token=${authToken || ""}`
       );
@@ -28,7 +33,7 @@ const ComicPage = (props) => {
       setIsLoading(false);
     };
     fetchData();
-  }, [searchComic, limitComic, authToken, skipComic]);
+  }, [searchComicDebounced, limitComic, authToken, skipComic]);
 
   const favoredAddComicClick = async (
     id,
@@ -61,10 +66,11 @@ const ComicPage = (props) => {
           return "";
         });
         setComics(tab);
+        toast.info(response.data.message);
       } catch (error) {
-        alert("Une erreur est survenue");
+        toast.error("Une erreur est survenue");
       }
-    } else alert("Authentifiez-vous !");
+    } else toast.error("Authentifiez-vous !");
   };
 
   return (

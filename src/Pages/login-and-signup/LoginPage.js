@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginPage = ({ userLogin }) => {
   let history = useHistory();
@@ -23,8 +25,9 @@ const LoginPage = ({ userLogin }) => {
 
       userLogin(token);
       history.push("/");
+      toast(`Salut ${response.data.username}`);
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
   return (
