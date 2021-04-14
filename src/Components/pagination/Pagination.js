@@ -1,4 +1,5 @@
 import PaginationPage from "./PaginationPage";
+import SelectInput from "./SelectInput";
 
 const Pagination = (props) => {
   // props for page CharacterPage
@@ -24,11 +25,14 @@ const Pagination = (props) => {
 
   const handleSearchCharacterChange = (event) =>
     setSearchCharacter(event.target.value);
-  const handleLimitCharacterChange = (event) =>
-    setLimitCharacter(event.target.value);
+  const handleLimitCharacterChange = (event) => {
+    setLimitCharacter(event.value);
+  };
 
   const handleSearchComicChange = (event) => setSearchComic(event.target.value);
-  const handleLimitComicChange = (event) => setLimitComic(event.target.value);
+  const handleLimitComicChange = (event) => {
+    setLimitComic(event.value);
+  };
 
   let countPage;
   if (type === "Characters") {
@@ -52,13 +56,9 @@ const Pagination = (props) => {
           </div>
 
           <div title="Nombre de fiche par page ">
-            <label>Limit : </label>
-            <input
-              type="number"
-              value={limitCharacter}
-              onChange={handleLimitCharacterChange}
-              min="1"
-              max="100"
+            <SelectInput
+              limitValue={limitCharacter}
+              handleSetLimit={handleLimitCharacterChange}
             />
           </div>
           <p>
@@ -81,13 +81,9 @@ const Pagination = (props) => {
           </div>
 
           <div title="Nombre de fiche par page ">
-            <label>Limit : </label>
-            <input
-              type="number"
-              value={limitComic}
-              onChange={handleLimitComicChange}
-              min="1"
-              max="100"
+            <SelectInput
+              limitValue={limitComic}
+              handleSetLimit={handleLimitComicChange}
             />
           </div>
           <p>
