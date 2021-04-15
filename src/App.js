@@ -13,6 +13,7 @@ import FavoredComicPage from "./Pages/comic/FavoredComicPage";
 
 import Header from "./Components/header/Header";
 import PageNotFound from "./Components/PageNotFound";
+import FirstLoading from "./Components/FirstLoading";
 
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -24,6 +25,7 @@ library.add(faStar);
 function App() {
   const [authToken, setAuthToken] = useState(Cookies.get("Token") || null);
   const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const checkPictureMissing = (src) => {
     const regex = /available/;
@@ -55,75 +57,79 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Header
-          authToken={authToken}
-          userLogin={userLogin}
-          userData={userData}
-          setUserData={setUserData}
-          setAuthToken={setAuthToken}
-        />
-        <ToastContainer
-          position="top-right"
-          autoClose={10000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <Switch>
-          <Route exact path="/login">
-            <LoginPage authToken={authToken} userLogin={userLogin} />
-          </Route>
-          <Route exact path="/signup">
-            <SignUpPage
-              authToken={authToken}
-              userLogin={userLogin}
-              setAuthToken={setAuthToken}
-            />
-          </Route>
-          <Route exact path="/favored">
-            <FavoredPage authToken={authToken} />
-          </Route>
-          <Route exact path="/character-detail-page/:id">
-            <CharacterDetailPage
-              user={userData ? userData.username : ""}
-              checkPictureMissing={checkPictureMissing}
-            />
-          </Route>
-          <Route exact path="/favoredComic">
-            <FavoredComicPage
-              authToken={authToken}
-              checkPictureMissing={checkPictureMissing}
-            />
-          </Route>
-          <Route exact path="/favoredCharacter">
-            <FavoredCharacterPage
-              authToken={authToken}
-              checkPictureMissing={checkPictureMissing}
-            />
-          </Route>
+      {isLoading === true ? (
+        <FirstLoading setIsLoading={setIsLoading} />
+      ) : (
+        <Router>
+          <Header
+            authToken={authToken}
+            userLogin={userLogin}
+            userData={userData}
+            setUserData={setUserData}
+            setAuthToken={setAuthToken}
+          />
+          <ToastContainer
+            position="top-right"
+            autoClose={10000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <Switch>
+            <Route exact path="/login">
+              <LoginPage authToken={authToken} userLogin={userLogin} />
+            </Route>
+            <Route exact path="/signup">
+              <SignUpPage
+                authToken={authToken}
+                userLogin={userLogin}
+                setAuthToken={setAuthToken}
+              />
+            </Route>
+            <Route exact path="/favored">
+              <FavoredPage authToken={authToken} />
+            </Route>
+            <Route exact path="/character-detail-page/:id">
+              <CharacterDetailPage
+                user={userData ? userData.username : ""}
+                checkPictureMissing={checkPictureMissing}
+              />
+            </Route>
+            <Route exact path="/favoredComic">
+              <FavoredComicPage
+                authToken={authToken}
+                checkPictureMissing={checkPictureMissing}
+              />
+            </Route>
+            <Route exact path="/favoredCharacter">
+              <FavoredCharacterPage
+                authToken={authToken}
+                checkPictureMissing={checkPictureMissing}
+              />
+            </Route>
 
-          <Route exact path="/comic">
-            <ComicPage
-              authToken={authToken}
-              checkPictureMissing={checkPictureMissing}
-            />
-          </Route>
-          <Route exact path="/">
-            <CharacterPage
-              authToken={authToken}
-              checkPictureMissing={checkPictureMissing}
-            />
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </Router>
+            <Route exact path="/comic">
+              <ComicPage
+                authToken={authToken}
+                checkPictureMissing={checkPictureMissing}
+              />
+            </Route>
+            <Route exact path="/">
+              <CharacterPage
+                authToken={authToken}
+                checkPictureMissing={checkPictureMissing}
+              />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </Router>
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 
+import Audio from "../Audio";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
@@ -39,6 +40,7 @@ const Header = (props) => {
           <b> {userData ? "niveaux 2" : "non accrédité"}</b>
         </p>
       </div>
+      <Audio />
       <button className="red" onClick={() => history.push("/")}>
         Personnage
       </button>
