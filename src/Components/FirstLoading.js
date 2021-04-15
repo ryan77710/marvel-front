@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useCountDown from "react-countdown-hook";
-import spiderMovie from "../assets/video/Miles-Morales.mp4";
+// import spiderMovie from "../assets/video/Miles-Morales.mp4";
+
 const FirstLoading = ({ setIsLoading }) => {
   const initialTime = 227 * 1000;
   const interval = 1000;
@@ -12,7 +13,7 @@ const FirstLoading = ({ setIsLoading }) => {
   return (
     <div>
       <video controls muted={true} loop autoPlay width="auto">
-        <source src={spiderMovie} type="video/mp4" />
+        <source src={"/Miles-Morales.mp4"} type="video/mp4" />
       </video>
       <button
         onClick={timeLeft < 150000 ? () => setIsLoading(false) : () => {}}
