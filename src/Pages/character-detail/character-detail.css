@@ -1,6 +1,6 @@
 /* CharacterDetailPage ---------------------------------------------------------------------------------------------- */
 .CharacterDetailPage {
-  height: 88.5vh;
+  min-height: 88.5vh;
   display: flex;
 }
 
@@ -69,7 +69,6 @@
 
 .CharacterDetailPage .alice-carousel__stage-item.__active {
   margin-right: 150px;
-  /* transition: 2.5s; */
 }
 
 /* .CharacterDetailPage .ShowComic modal ---------------------------------------------------------------------------------------------- */
@@ -201,4 +200,53 @@
   top: 10px;
   left: 10px;
   color: crimson;
+}
+@media (max-width: 1200px) {
+  .CharacterDetailPage > div:nth-child(1) {
+    width: 50vw;
+  }
+  .CharacterDetailPage > div:nth-child(2) {
+    width: 50vw;
+    justify-content: center;
+  }
+  .CharacterDetailPage .container {
+    width: 50vw;
+  }
+  .CharacterDetailPage > div:nth-child(2) > div {
+    width: 300px;
+  }
+
+  .CharacterDetailPage > div:nth-child(2) > div:nth-child(2) {
+    display: none;
+  }
+  .CharacterDetailPage .ShowComic > div {
+    min-width: 700px;
+  }
+  .CharacterDetailPage .ShowComic {
+    position: fixed;
+    top: 10vh;
+  }
+}
+
+@media (max-width: 707px) {
+  .CharacterDetailPage {
+    flex-direction: column;
+    align-items: center;
+  }
+  .CharacterDetailPage > div:nth-child(2) {
+    width: 100vw;
+  }
+  .CharacterDetailPage .container {
+    min-width: 80vw;
+    flex-direction: row;
+    overflow-y: inherit;
+    overflow-x: scroll;
+  }
+  .CharacterDetailPage .ShowComic {
+    flex-direction: column;
+  }
+  .CharacterDetailPage .ShowComic > div {
+    min-width: 100vw;
+    flex-direction: column;
+  }
 }

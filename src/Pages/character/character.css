@@ -9,6 +9,7 @@
 .CharacterPage .Poster {
   margin-bottom: 15px;
   position: relative;
+  margin-right: 20px;
 }
 /* animation for poster */
 .bounce-in-right {

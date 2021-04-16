@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import useCountDown from "react-countdown-hook";
-// import spiderMovie from "../assets/video/Miles-Morales.mp4";
 
 const FirstLoading = ({ setIsLoading }) => {
   const initialTime = 227 * 1000;

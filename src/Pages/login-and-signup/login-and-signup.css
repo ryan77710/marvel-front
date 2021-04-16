@@ -21,6 +21,7 @@
   font-size: 20px;
   margin-bottom: 20px;
   width: 100%;
+  min-width: 270px;
   background-color: transparent;
   outline-color: #15f4ee;
   color: #15f4ee;
@@ -35,6 +36,7 @@
 .LoginPage form button,
 .SignUpPage form button {
   height: 40px;
+  min-width: 195px;
   width: 70%;
   margin-top: 20px;
   margin-bottom: 30px;
