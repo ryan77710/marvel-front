@@ -29,6 +29,15 @@
 .SignUpPage label {
   cursor: pointer;
 }
+.SignUpPage label img {
+  margin-top: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.SignUpPage label img:hover {
+  border: 1px solid #15f4ee;
+}
 
 .SignUpPage .hidden {
   display: none;

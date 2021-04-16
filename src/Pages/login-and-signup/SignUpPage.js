@@ -76,7 +76,18 @@ const SignUpPage = ({ userLogin }) => {
           onChange={handleConfirmePasswordChange}
         />
         <div>
-          <label htmlFor="picture">Choisissez-une image</label>
+          <label htmlFor="picture">
+            {" "}
+            {picture ? (
+              <img
+                src={URL.createObjectURL(picture)}
+                title="Cliquez sur l'image pour changer de photo"
+                alt="ok"
+              />
+            ) : (
+              "Choisissez-une image"
+            )}
+          </label>
           <input
             className="hidden"
             type="file"
@@ -90,6 +101,7 @@ const SignUpPage = ({ userLogin }) => {
           Vous avez déja un compte !
         </span>
       </form>
+      {/* {picture ? <img src={URL.createObjectURL(picture)} alt="ok" /> : ""} */}
     </div>
   );
 };
